@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
-import { Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
+import { Nav, NavItem, NavLink, TabContent, TabPane, Button } from 'reactstrap';
 import { Container } from '../../features/app';
 import { AssistanceLog } from '../../features/common';
 import { TabProfile, TabDemographics, TabHousehold, TabIncome } from './';
@@ -49,10 +49,13 @@ export class Detail extends Component {
 
     return (
       <div>
-        <h2>
-          <span className='clients-detail__back-arrow' onClick={() => { history.push('/clients'); }}><i className='fas fa-arrow-left' /></span>
-          &nbsp;&nbsp;&nbsp;{clientInfo.Fname} {clientInfo.Lname}
-        </h2>
+        <div className='row justify-content-between align-items-center m-0'>
+          <h2>
+            <span className='clients-detail__back-arrow' onClick={() => { history.push('/clients'); }}><i className='fas fa-arrow-left' /></span>
+            &nbsp;&nbsp;&nbsp;{clientInfo.Fname} {clientInfo.Lname}
+          </h2>
+          <Button size='sm' className='col-3' color='primary' onClick={() => { alert('sup!'); }}>Save</Button>
+        </div>
         <hr />
         <div>
           <Nav tabs>

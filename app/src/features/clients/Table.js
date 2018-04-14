@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
+import moment from 'moment';
 import { connect } from 'react-redux';
 import { Progress } from 'reactstrap';
 import * as actions from './redux/actions';
@@ -53,7 +54,7 @@ export class Table extends Component {
             >
               <td>{searchResult.Fname}</td>
               <td>{searchResult.Lname}</td>
-              <td>{searchResult.birth_date}</td>
+              <td>{moment.unix(searchResult.birth_date).format('MM/DD/YYYY')}</td>
             </tr>
             ))
         }

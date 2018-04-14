@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { FormGroup, Label, Input } from 'reactstrap';
+import moment from 'moment';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
 
@@ -40,8 +41,8 @@ export class TabProfile extends Component {
             <Input type='text' name='Mname' id='Mname' value={clientInfo.Mname || ''} onChange={this.handleChangeEvent} />
           </FormGroup>
           <FormGroup className='col'>
-            <Label for='birth_date'>First Name</Label>
-            <Input type='date' name='birth_date' id='birth_date' value={clientInfo.birth_date || ''} onChange={this.handleChangeEvent} />
+            <Label for='birth_date'>Date of Birth</Label>
+            <Input type='date' name='birth_date' id='birth_date' value={moment.unix(clientInfo.birth_date).format('YYYY-MM-DD') || ''} onChange={this.handleChangeEvent} />
           </FormGroup>
         </div>
         <div className='row mt-3'>

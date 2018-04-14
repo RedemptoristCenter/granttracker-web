@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
 import { Table as bsTable, Progress } from 'reactstrap';
+import moment from 'moment/moment';
+import accounting from 'accounting';
 
 export class Table extends Component {
   static propTypes = {
@@ -23,11 +25,11 @@ export class Table extends Component {
     if (this.props.grants.requestSearchPending) {
       return (
         <tbody>
-        <tr>
-          <td colSpan='3'>
-            <Progress bar animated color='success' value='100'>Loading</Progress>
-          </td>
-        </tr>
+          <tr>
+            <td colSpan='6'>
+              <Progress bar animated color='success' value='100'>Loading</Progress>
+            </td>
+          </tr>
         </tbody>
       );
     }
@@ -35,21 +37,24 @@ export class Table extends Component {
     if (searchResults.length < 1) {
       return (
         <tbody>
-        <tr>
-          <td colSpan='3'>No results found...</td>
-        </tr>
+          <tr>
+            <td colSpan='6'>No results found...</td>
+          </tr>
         </tbody>
       );
     }
 
     return (
       <tbody>
-      {
+        {
         searchResults.map(searchResult => (
-          <tr key={`search-result-grant-${searchResult.grand_id}`}>
-            <td>{searchResult.Fname}</td>
-            <td>{searchResult.Lname}</td>
-            <td>{searchResult.birth_date}</td>
+          <tr key={`search-result-grant-${searchResult.grant_id}`}>
+            <td>{searchResult.grant_name}</td>
+            <td>{searchResult.grant_id}</td>
+            <td>{accounting.formatMoney(searchResult.initial_amount)}</td>
+            <td>{accounting.formatMoney(searchResult.remaining_amount)}</td>
+            <td>{moment.unix(searchResult.start_dt_tm).format("MM/DD/YYYY")}</td>
+            <td>{moment.unix(searchResult.end_dt_tm).format("MM/DD/YYYY")}</td>
           </tr>
         ))
       }
@@ -62,11 +67,14 @@ export class Table extends Component {
       <div className='grants-table mt-3'>
         <table className='table table-striped table-hover'>
           <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Birth Date</th>
-          </tr>
+            <tr>
+              <th>Grant Name</th>
+              <th>Grant ID</th>
+              <th>Initial Amount</th>
+              <th>Remaining Amount</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+            </tr>
           </thead>
           {this.renderResults()}
         </table>
