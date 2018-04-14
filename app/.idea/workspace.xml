@@ -17,8 +17,8 @@
       <file leaf-file-name="Container.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/features/app/Container.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="14" column="21" lean-forward="true" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+            <state relative-caret-position="650">
+              <caret line="26" column="53" lean-forward="false" selection-start-line="26" selection-start-column="53" selection-end-line="26" selection-end-column="53" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -26,11 +26,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Container.scss" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Search.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/features/clients/Search.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="253">
+              <caret line="17" column="45" lean-forward="false" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Container.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/features/app/Container.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="563">
-              <caret line="34" column="21" lean-forward="false" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+            <state relative-caret-position="350">
+              <caret line="14" column="23" lean-forward="false" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -73,6 +83,7 @@
         <option value="$PROJECT_DIR$/.eslintrc" />
         <option value="$PROJECT_DIR$/src/features/app/Container.js" />
         <option value="$PROJECT_DIR$/src/features/app/Container.scss" />
+        <option value="$PROJECT_DIR$/src/features/clients/Search.js" />
       </list>
     </option>
   </component>
@@ -142,7 +153,7 @@
     <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.selected.package.standard" value="$PROJECT_DIR$/node_modules/eslint" />
-    <property name="SearchEverywhereHistoryKey" value="container.s&#9;FILE&#9;file:///Users/mac/Code/granttracker-web/app/src/features/app/Container.scss" />
+    <property name="SearchEverywhereHistoryKey" value="search&#9;null&#9;null&#10;container.s&#9;FILE&#9;file:///Users/mac/Code/granttracker-web/app/src/features/app/Container.scss" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -175,12 +186,12 @@
       <option name="presentableId" value="Default" />
       <updated>1523718671449</updated>
       <workItem from="1523718678673" duration="2875000" />
-      <workItem from="1523722485562" duration="940000" />
+      <workItem from="1523722485562" duration="1518000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3815000" />
+    <option name="totallyTimeSpent" value="4393000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -279,20 +290,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/features/app/Container.js">
+    <entry file="file://$PROJECT_DIR$/src/features/app/Container.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
-          <caret line="14" column="21" lean-forward="true" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+          <caret line="14" column="23" lean-forward="false" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/features/app/Container.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="26" column="53" lean-forward="false" selection-start-line="26" selection-start-column="53" selection-end-line="26" selection-end-column="53" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/features/app/Container.scss">
+    <entry file="file://$PROJECT_DIR$/src/features/clients/Search.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="563">
-          <caret line="34" column="21" lean-forward="false" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+        <state relative-caret-position="253">
+          <caret line="17" column="45" lean-forward="false" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
           <folding />
         </state>
       </provider>

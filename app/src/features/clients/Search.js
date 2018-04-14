@@ -13,9 +13,9 @@ export class Search extends Component {
 
   render() {
     return (
-      <Container>
-        <div className="clients-search">
-          Page Content: clients/Search
+      <Container title='Clients'>
+        <div className='clients-search'>
+          <p>Page Content: clients/Search</p>
         </div>
       </Container>
     );
