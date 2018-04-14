@@ -81,7 +81,9 @@
     "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
+    "accounting": "^0.4.1",
     "bootstrap": "^4.1.0",
+    "moment": "^2.22.0",
     "reactstrap": "^5.0.0"
   }
 }
