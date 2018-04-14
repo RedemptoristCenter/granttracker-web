@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Table as bsTable, Progress } from 'reactstrap';
+import { Progress } from 'reactstrap';
 import * as actions from './redux/actions';
+import history from '../../common/history';
 
 export class Table extends Component {
   static propTypes = {
@@ -46,7 +47,10 @@ export class Table extends Component {
       <tbody>
         {
           searchResults.map(searchResult => (
-            <tr key={`search-result-client-${searchResult.client_id}`}>
+            <tr
+              key={`search-result-client-${searchResult.client_id}`}
+              onClick={() => { history.push(`/clients/${searchResult.client_id}`); }}
+            >
               <td>{searchResult.Fname}</td>
               <td>{searchResult.Lname}</td>
               <td>{searchResult.birth_date}</td>
