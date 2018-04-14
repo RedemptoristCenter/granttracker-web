@@ -85,6 +85,7 @@
     "bootstrap": "^4.1.0",
     "classnames": "^2.2.5",
     "moment": "^2.22.0",
+    "react-datepicker": "^1.4.1",
     "reactstrap": "^5.0.0"
   }
 }

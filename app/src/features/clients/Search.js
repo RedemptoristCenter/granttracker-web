@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as actions from './redux/actions';
 import { Container } from '../../features/app';
 import { Form, Table } from './';
+import history from '../../common/history';
 
 export class Search extends Component {
   static propTypes = {
@@ -14,7 +15,7 @@ export class Search extends Component {
 
   render() {
     return (
-      <Container title='Clients'>
+      <Container title='Clients' createButtonLabel='+ New Client' createButtonFunction={() => { history.push('/clients/new'); }}>
         <div className='clients-search'>
           <Form />
           <Table />
