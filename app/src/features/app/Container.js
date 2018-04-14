@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Nav, NavItem, NavLink, Col, Card } from 'reactstrap';
+import history from '../../common/history';
 
 export default class Container extends Component {
   static propTypes = {
@@ -12,13 +13,20 @@ export default class Container extends Component {
     return (
       <div className='app-container row align-items-stretch justify-content-around m-0'>
         <Col xs='1' className='nav-bar__left'>
-          <img className='nav-logo' src={require('../../images/logo-mark.svg')} />
+          <div>
+            <img className='nav-logo' src={require('../../images/logo-mark.svg')} />
+            <Nav vertical className='nav-bar__icons'>
+              <NavItem>
+                <NavLink href='#' onClick={(e) => { e.preventDefault(); history.push('/clients'); }}><i className='fas fa-users' /></NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href='#' onClick={(e) => { e.preventDefault(); history.push('/grants'); }}><i className='fas fa-hand-holding-usd' /></NavLink>
+              </NavItem>
+            </Nav>
+          </div>
           <Nav vertical className='nav-bar__icons'>
             <NavItem>
-              <NavLink href='#'><i className='fas fa-users' /></NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href='#'><i className='fas fa-hand-holding-usd' /></NavLink>
+              <NavLink href='#' onClick={(e) => { e.preventDefault(); history.push('/logout'); }}><i className='fas fa-sign-out-alt' /></NavLink>
             </NavItem>
           </Nav>
         </Col>
