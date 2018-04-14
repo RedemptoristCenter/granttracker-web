@@ -23,11 +23,11 @@ export class Table extends Component {
     if (this.props.grants.requestSearchPending) {
       return (
         <tbody>
-        <tr>
-          <td colSpan='6'>
-            <Progress bar animated color='success' value='100'>Loading</Progress>
-          </td>
-        </tr>
+          <tr>
+            <td colSpan='6'>
+              <Progress bar animated color='success' value='100'>Loading</Progress>
+            </td>
+          </tr>
         </tbody>
       );
     }
@@ -35,16 +35,16 @@ export class Table extends Component {
     if (searchResults.length < 1) {
       return (
         <tbody>
-        <tr>
-          <td colSpan='3'>No results found...</td>
-        </tr>
+          <tr>
+            <td colSpan='6'>No results found...</td>
+          </tr>
         </tbody>
       );
     }
 
     return (
       <tbody>
-      {
+        {
         searchResults.map(searchResult => (
           <tr key={`search-result-grant-${searchResult.grant_id}`}>
             <td>{searchResult.grant_name}</td>
@@ -54,9 +54,6 @@ export class Table extends Component {
             <td>{searchResult.start_dt_tm}</td>
             <td>{searchResult.end_dt_tm}</td>
           </tr>
-
-
-          
         ))
       }
       </tbody>
@@ -68,14 +65,14 @@ export class Table extends Component {
       <div className='grants-table mt-3'>
         <table className='table table-striped table-hover'>
           <thead>
-          <tr>
-            <th>Grant Name</th>
-            <th>Grant ID</th>
-            <th>Initial Amount</th>
-            <th>Remaining Amount</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-          </tr>
+            <tr>
+              <th>Grant Name</th>
+              <th>Grant ID</th>
+              <th>Initial Amount</th>
+              <th>Remaining Amount</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+            </tr>
           </thead>
           {this.renderResults()}
         </table>
