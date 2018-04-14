@@ -26,7 +26,7 @@ export class TabProfile extends Component {
   }
 
   handleDateChange(date) {
-    this.props.actions.updateLocalClientInfo('birth_date', date);
+    this.props.actions.updateLocalClientInfo('birth_date', moment(date.target.value).unix());
   }
 
   render() {
@@ -48,7 +48,16 @@ export class TabProfile extends Component {
           </FormGroup>
           <FormGroup className='col'>
             <Label for='birth_date'>Date of Birth</Label>
-            <DatePicker className='form-control' selected={moment(clientInfo.birth_date)} onChange={this.handleDateChange} />
+            <Input
+              type='date'
+              max='2999-12-31'
+              name='birthDateView'
+              id='birthDate'
+              placeholder='Date of Birth'
+              bsSize='sm'
+              value={moment.unix(clientInfo.birth_date).format("YYYY-MM-DD")}
+              onChange={this.handleDateChange}
+            />
           </FormGroup>
         </div>
         <div className='row mt-3'>
