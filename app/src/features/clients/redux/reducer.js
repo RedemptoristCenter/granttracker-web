@@ -8,9 +8,11 @@
 
 import initialState from './initialState';
 import { reducer as requestSearchReducer } from './requestSearch';
+import { reducer as requestClientByIdReducer } from './requestClientById';
 
 const reducers = [
   requestSearchReducer,
+  requestClientByIdReducer,
 ];
 
 export default function reducer(state = initialState, action) {

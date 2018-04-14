@@ -10,6 +10,8 @@ const initialState = {
   clientInfo: null,
   requestSearchPending: false,
   requestSearchError: null,
+  requestClientByIdPending: false,
+  requestClientByIdError: null,
 };
 
 export default initialState;

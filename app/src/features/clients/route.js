@@ -3,6 +3,7 @@
 
 import {
   Search,
+  Detail,
 } from './';
 
 export default {
@@ -10,5 +11,6 @@ export default {
   name: 'Clients',
   childRoutes: [
     { path: 'default-page', name: 'Default page', component: Search, isIndex: true },
+    { path: '/clients/:client_id', name: 'Detail', component: Detail },
   ],
 };
