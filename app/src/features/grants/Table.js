@@ -24,7 +24,7 @@ export class Table extends Component {
       return (
         <tbody>
         <tr>
-          <td colSpan='3'>
+          <td colSpan='6'>
             <Progress bar animated color='success' value='100'>Loading</Progress>
           </td>
         </tr>
@@ -46,11 +46,17 @@ export class Table extends Component {
       <tbody>
       {
         searchResults.map(searchResult => (
-          <tr key={`search-result-grant-${searchResult.grand_id}`}>
-            <td>{searchResult.Fname}</td>
-            <td>{searchResult.Lname}</td>
-            <td>{searchResult.birth_date}</td>
+          <tr key={`search-result-grant-${searchResult.grant_id}`}>
+            <td>{searchResult.grant_name}</td>
+            <td>{searchResult.grant_id}</td>
+            <td>{searchResult.initial_amount}</td>
+            <td>{searchResult.remaining_amount}</td>
+            <td>{searchResult.start_dt_tm}</td>
+            <td>{searchResult.end_dt_tm}</td>
           </tr>
+
+
+          
         ))
       }
       </tbody>
@@ -63,9 +69,12 @@ export class Table extends Component {
         <table className='table table-striped table-hover'>
           <thead>
           <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Birth Date</th>
+            <th>Grant Name</th>
+            <th>Grant ID</th>
+            <th>Initial Amount</th>
+            <th>Remaining Amount</th>
+            <th>Start Date</th>
+            <th>End Date</th>
           </tr>
           </thead>
           {this.renderResults()}
