@@ -33,12 +33,19 @@
       text-align: center;
 
       a {
-        padding: 16px 0;
+        margin: 16px 0;
         font-size: 24px;
         color: #fff;
+        padding: 0;
+
+        &:hover, &.active {
+          background: #4DA1FF;
+          color: #fff;
+          border-radius: 10px;
+        }
 
         &:first-child {
-          padding-bottom: 0;
+          margin-bottom: 0;
         }
       }
     }

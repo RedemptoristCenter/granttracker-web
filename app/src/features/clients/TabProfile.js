@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { FormGroup, Label, Input } from 'reactstrap';
+import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
@@ -16,11 +17,16 @@ export class TabProfile extends Component {
     super(props);
 
     this.handleChangeEvent = this.handleChangeEvent.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
   }
 
   handleChangeEvent(e) {
     const { name, value } = e.target;
     this.props.actions.updateLocalClientInfo(name, value);
+  }
+
+  handleDateChange(date) {
+    this.props.actions.updateLocalClientInfo('birth_date', date);
   }
 
   render() {
@@ -42,7 +48,7 @@ export class TabProfile extends Component {
           </FormGroup>
           <FormGroup className='col'>
             <Label for='birth_date'>Date of Birth</Label>
-            <Input type='date' name='birth_date' id='birth_date' value={moment.unix(clientInfo.birth_date).format('YYYY-MM-DD') || ''} onChange={this.handleChangeEvent} />
+            <DatePicker className='form-control' selected={moment(clientInfo.birth_date)} onChange={this.handleDateChange} />
           </FormGroup>
         </div>
         <div className='row mt-3'>

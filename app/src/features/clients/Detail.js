@@ -29,9 +29,11 @@ export class Detail extends Component {
 
   componentDidMount() {
     const { client_id } = this.props.match.params;
+    if (client_id === 'new') { this.props.actions.createLocalDefaultClient(); return true; }
     this.props.actions.requestClientById({ client_id });
 
     console.log('client_id', client_id);
+    return true;
   }
 
   toggle(tab) {
