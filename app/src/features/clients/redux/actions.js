@@ -3,3 +3,4 @@ export { requestClientById, dismissRequestClientByIdError } from './requestClien
 export { updateLocalClientInfo } from './updateLocalClientInfo';
 export { createLocalDefaultClient } from './createLocalDefaultClient';
 export { requestCodeset, dismissRequestCodesetError } from './requestCodeset';
+export { resetLocalClientInfo } from './resetLocalClientInfo';

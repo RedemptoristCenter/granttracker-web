@@ -70,6 +70,15 @@ export function reducer(state, action) {
         ...state,
         requestCodesetPending: false,
         requestCodesetError: null,
+        DISABILITY: action.data.DISABILITY,
+        ETHNICITY: action.data.ETHNICITY,
+        FAMILY_TYPE: action.data.FAMILY_TYPE,
+        GENDER: action.data.GENDER,
+        HOUSING: action.data.HOUSING,
+        RACE: action.data.RACE,
+        RELTN_TO_HOH: action.data.RELTN_TO_HOH,
+        SSN: action.data.SSN,
+        VETERAN: action.data.VETERAN
       };
 
     case CLIENTS_REQUEST_CODESET_FAILURE:

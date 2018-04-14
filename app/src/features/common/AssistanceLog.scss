@@ -3,4 +3,8 @@
 .common-assistance-log {
   height: 100%;
   border-left: 1px solid #dedede;
+
+  &__listing {
+    height: calc(100% - 75px);
+  }
 }
