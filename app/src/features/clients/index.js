@@ -3,3 +3,7 @@ export { default as Search } from './Search';
 export { default as Form } from './Form';
 export { default as Table } from './Table';
 export { default as Detail } from './Detail';
+export { default as TabProfile } from './TabProfile';
+export { default as TabDemographics } from './TabDemographics';
+export { default as TabHousehold } from './TabHousehold';
+export { default as TabIncome } from './TabIncome';

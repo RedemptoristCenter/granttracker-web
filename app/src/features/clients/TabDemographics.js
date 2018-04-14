@@ -3,23 +3,18 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
-import { Container } from '../../features/app';
-import { Form, Table } from './';
 
-export class Search extends Component {
+export class TabDemographics extends Component {
   static propTypes = {
-    grants: PropTypes.object.isRequired,
+    clients: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
   };
 
   render() {
     return (
-      <Container title='Grants'>
-        <div className='grants-search'>
-          <Form />
-          <Table />
-        </div>
-      </Container>
+      <div className="clients-tab-demographics">
+        Page Content: clients/TabDemographics
+      </div>
     );
   }
 }
@@ -27,7 +22,7 @@ export class Search extends Component {
 /* istanbul ignore next */
 function mapStateToProps(state) {
   return {
-    grants: state.grants,
+    clients: state.clients,
   };
 }
 
@@ -41,4 +36,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Search);
+)(TabDemographics);

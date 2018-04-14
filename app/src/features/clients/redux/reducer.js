@@ -9,10 +9,12 @@
 import initialState from './initialState';
 import { reducer as requestSearchReducer } from './requestSearch';
 import { reducer as requestClientByIdReducer } from './requestClientById';
+import { reducer as updateLocalClientInfoReducer } from './updateLocalClientInfo';
 
 const reducers = [
   requestSearchReducer,
   requestClientByIdReducer,
+  updateLocalClientInfoReducer,
 ];
 
 export default function reducer(state = initialState, action) {
