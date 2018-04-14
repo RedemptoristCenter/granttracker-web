@@ -3,6 +3,7 @@
 
 import {
   Search,
+  Detail
 } from './';
 
 export default {
@@ -10,5 +11,6 @@ export default {
   name: 'Grants',
   childRoutes: [
     { path: 'default-page', name: 'Default page', component: Search, isIndex: true },
+    { path: '/grants/:grant_id', name: 'Detail', component: Detail },
   ],
 };

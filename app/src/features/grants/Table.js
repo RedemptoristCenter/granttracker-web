@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from './redux/actions';
-import { Table as bsTable, Progress } from 'reactstrap';
+import { Progress } from 'reactstrap';
 import moment from 'moment/moment';
 import accounting from 'accounting';
+import history from '../../common/history';
+import * as actions from './redux/actions';
 
 export class Table extends Component {
   static propTypes = {
@@ -48,13 +49,14 @@ export class Table extends Component {
       <tbody>
         {
         searchResults.map(searchResult => (
-          <tr key={`search-result-grant-${searchResult.grant_id}`}>
+          <tr key={`search-result-grant-${searchResult.grant_id}`}
+          onClick={() => { history.push(`/grants/${searchResult.grant_id}`); }}
+          >
             <td>{searchResult.grant_name}</td>
-            <td>{searchResult.grant_id}</td>
             <td>{accounting.formatMoney(searchResult.initial_amount)}</td>
             <td>{accounting.formatMoney(searchResult.remaining_amount)}</td>
-            <td>{moment.unix(searchResult.start_dt_tm).format("MM/DD/YYYY")}</td>
-            <td>{moment.unix(searchResult.end_dt_tm).format("MM/DD/YYYY")}</td>
+            <td>{moment.unix(searchResult.start_dt_tm).format('MM/DD/YYYY')}</td>
+            <td>{moment.unix(searchResult.end_dt_tm).format('MM/DD/YYYY')}</td>
           </tr>
         ))
       }
@@ -69,7 +71,6 @@ export class Table extends Component {
           <thead>
             <tr>
               <th>Grant Name</th>
-              <th>Grant ID</th>
               <th>Initial Amount</th>
               <th>Remaining Amount</th>
               <th>Start Date</th>
