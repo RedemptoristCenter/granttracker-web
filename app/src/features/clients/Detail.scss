@@ -1,7 +1,7 @@
 @import '../../styles/mixins';
 
-.clients-table {
-  tr {
+.clients-detail {
+  &__back-arrow {
     cursor: pointer;
   }
 }
