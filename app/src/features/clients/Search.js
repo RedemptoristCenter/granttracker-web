@@ -3,23 +3,21 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
-import history from '../../common/history';
+import { Container } from '../../features/app';
 
-export class DefaultPage extends Component {
+export class Search extends Component {
   static propTypes = {
-    home: PropTypes.object.isRequired,
+    clients: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
   };
 
-  componentDidMount() {
-    history.push('/clients');
-  }
-
   render() {
     return (
-      <div className="home-default-page">
-        Hello Rekit!
-      </div>
+      <Container>
+        <div className="clients-search">
+          Page Content: clients/Search
+        </div>
+      </Container>
     );
   }
 }
@@ -27,7 +25,7 @@ export class DefaultPage extends Component {
 /* istanbul ignore next */
 function mapStateToProps(state) {
   return {
-    home: state.home,
+    clients: state.clients,
   };
 }
 
@@ -41,4 +39,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DefaultPage);
+)(Search);

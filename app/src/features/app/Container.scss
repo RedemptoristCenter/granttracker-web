@@ -1,0 +1,19 @@
+@import '../../styles/mixins';
+
+.app-container {
+  height: 100%;
+}
+
+.nav-bar {
+  &__left {
+    background-color: $side-nav;
+    height: 100%;
+  }
+  &__top {
+
+  }
+}
+
+.nav-logo {
+  
+}

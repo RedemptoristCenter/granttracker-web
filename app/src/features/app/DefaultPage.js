@@ -3,22 +3,17 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
-import history from '../../common/history';
 
 export class DefaultPage extends Component {
   static propTypes = {
-    home: PropTypes.object.isRequired,
+    app: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
   };
 
-  componentDidMount() {
-    history.push('/clients');
-  }
-
   render() {
     return (
-      <div className="home-default-page">
-        Hello Rekit!
+      <div className="app-default-page">
+        Page Content: app/DefaultPage
       </div>
     );
   }
@@ -27,7 +22,7 @@ export class DefaultPage extends Component {
 /* istanbul ignore next */
 function mapStateToProps(state) {
   return {
-    home: state.home,
+    app: state.app,
   };
 }
 
