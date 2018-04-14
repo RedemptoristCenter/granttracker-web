@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import { FormGroup, Label, Input } from 'reactstrap';
+import { Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
 
@@ -19,7 +19,7 @@ export class TabDemographics extends Component {
 
   handleChangeEvent(e) {
     const { name, value } = e.target;
-    this.props.actions.updateLocalClientInfo(name, value);
+    this.props.actions.updateLocalClientInfo(name, parseInt(value));
   }
 
   render() {
@@ -68,6 +68,16 @@ export class TabDemographics extends Component {
             <Input type='select' name='disability_cd' id='disability_cd' value={clientInfo.disability_cd} onChange={this.handleChangeEvent}>
               {
                 this.props.clients.DISABILITY.map(disability => <option key={`disability-option-${disability.id}`} value={disability.id}>{disability.name}</option>)
+              }
+            </Input>
+          </div>
+        </div>
+        <div className='row mt-3'>
+          <div className='col'>
+            <Label for='housing_cd'>Housing Status</Label>
+            <Input type='select' name='housing_cd' id='housing_cd' value={clientInfo.housing_cd} onChange={this.handleChangeEvent}>
+              {
+                this.props.clients.HOUSING.map(housing => <option key={`housing-option-${housing.id}`} value={housing.id}>{housing.name}</option>)
               }
             </Input>
           </div>

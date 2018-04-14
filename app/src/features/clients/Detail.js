@@ -29,12 +29,18 @@ export class Detail extends Component {
 
   componentDidMount() {
     const { client_id } = this.props.match.params;
+    this.props.actions.requestCodeset();
+
     if (client_id === 'new') { this.props.actions.createLocalDefaultClient(); return true; }
     this.props.actions.requestClientById({ client_id });
-    this.props.actions.requestCodeset();
 
     console.log('client_id', client_id);
     return true;
+  }
+
+  componentWillUnmount() {
+    console.log('unmounting');
+    this.props.actions.resetLocalClientInfo();
   }
 
   toggle(tab) {
