@@ -7,8 +7,11 @@
 // NOTE: initialState constant is necessary so that Rekit could auto add initial state when creating async actions.
 const initialState = {
   searchResults: [],
+  grantInfo: null,
   requestSearchPending: false,
-  requestSearchError: null
+  requestSearchError: null,
+  requestGrantByIdPending: false,
+  requestGrantByIdError: null
 };
 
 export default initialState;

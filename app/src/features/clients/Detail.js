@@ -44,7 +44,6 @@ export class Detail extends Component {
 
   renderClientInfo() {
     const { clientInfo } = this.props.clients;
-    console.log(clientInfo);
     if (!clientInfo) { return ''; }
 
     return (
