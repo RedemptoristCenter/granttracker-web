@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
 import { Container } from '../../features/app';
+import { Form, Table } from './';
 
 export class Search extends Component {
   static propTypes = {
@@ -15,7 +16,8 @@ export class Search extends Component {
     return (
       <Container title='Clients'>
         <div className='clients-search'>
-          <p>Page Content: clients/Search</p>
+          <Form />
+          <Table />
         </div>
       </Container>
     );
