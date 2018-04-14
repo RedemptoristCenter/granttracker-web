@@ -8,12 +8,34 @@
   &__left {
     background-color: $side-nav;
     height: 100%;
+    max-width: 75px;
+    padding: 16px;
   }
-  &__top {
 
+  &__icons {
+    .nav-item {
+      text-align: center;
+
+      a {
+        padding: 16px 0;
+        font-size: 24px;
+        color: #fff;
+
+        &:first-child {
+          padding-bottom: 0;
+        }
+      }
+    }
+  }
+
+  &__top {
+    background-color: #fff;
+    width: 100%;
+    padding: 16px 32px;
+    min-height: 70px;
   }
 }
 
 .nav-logo {
-  
+  width: 100%;
 }

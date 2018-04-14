@@ -5,4 +5,5 @@ yarn-error.log
 coverage
 .nyc_output
 .tmp
+app/.idea
 .DS_Store
