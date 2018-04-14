@@ -1,8 +1,8 @@
 {
-  "name": "Redemptorist",
+  "name": "redemptorist",
   "version": "0.0.1",
   "private": true,
-  "description": "Redemptorist created by Rekit.",
+  "description": "redemptorist created by Rekit.",
   "keywords": [
     "rekit"
   ],
