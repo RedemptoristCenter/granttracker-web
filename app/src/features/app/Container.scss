@@ -2,6 +2,19 @@
 
 .app-container {
   height: 100%;
+
+  &__content-area {
+    padding: 32px;
+    height: calc(100% - 70px);
+
+    .card {
+      box-shadow: 0 2px 9px 0 rgba(0,0,0,0.03);
+      padding: 16px;
+      border-color: transparent;
+      height: 100%;
+      overflow: scroll;
+    }
+  }
 }
 
 .nav-bar {
