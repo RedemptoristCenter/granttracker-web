@@ -127,7 +127,7 @@ export class Detail extends Component {
           <div className='col'>
             {this.props.clients.requestClientByIdPending ? 'Loading...' : this.renderClientInfo()}
           </div>
-          <AssistanceLog className='col-3' name='Assistance Log' data={[]} />
+          <AssistanceLog className='col-3' name='Assistance Log' data={[]} buttonLabel='Provide Assistance' />
         </div>
       </Container>
     );
