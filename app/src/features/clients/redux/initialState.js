@@ -12,6 +12,8 @@ const initialState = {
   requestSearchError: null,
   requestClientByIdPending: false,
   requestClientByIdError: null,
+  requestCodesetPending: false,
+  requestCodesetError: null,
 };
 
 export default initialState;

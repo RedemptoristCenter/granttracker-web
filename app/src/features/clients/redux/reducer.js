@@ -11,12 +11,14 @@ import { reducer as requestSearchReducer } from './requestSearch';
 import { reducer as requestClientByIdReducer } from './requestClientById';
 import { reducer as updateLocalClientInfoReducer } from './updateLocalClientInfo';
 import { reducer as createLocalDefaultClientReducer } from './createLocalDefaultClient';
+import { reducer as requestCodesetReducer } from './requestCodeset';
 
 const reducers = [
   requestSearchReducer,
   requestClientByIdReducer,
   updateLocalClientInfoReducer,
   createLocalDefaultClientReducer,
+  requestCodesetReducer,
 ];
 
 export default function reducer(state = initialState, action) {
