@@ -73,6 +73,7 @@ export class Form extends Component {
         <FormGroup className='mb-2 mr-sm-2 mb-sm-0 col'>
           <Input
             type='date'
+            max='2999-12-31'
             name='birthDate'
             id='birthDate'
             placeholder='Date of Birth'
