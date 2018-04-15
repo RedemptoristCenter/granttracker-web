@@ -11,9 +11,20 @@ export class Search extends Component {
   static propTypes = {
     clients: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
+    fromModal: PropTypes.bool,
+    customSelect: PropTypes.func
   };
 
   render() {
+    if (this.props.fromModal) {
+      return (
+        <div className='clients-search'>
+          <Form />
+          <Table customSelect={this.props.customSelect} />
+        </div>
+      );
+    }
+
     return (
       <Container title='Clients' createButtonLabel='+ New Client' createButtonFunction={() => { history.push('/clients/new'); }}>
         <div className='clients-search'>

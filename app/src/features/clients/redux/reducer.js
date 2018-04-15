@@ -13,6 +13,10 @@ import { reducer as updateLocalClientInfoReducer } from './updateLocalClientInfo
 import { reducer as createLocalDefaultClientReducer } from './createLocalDefaultClient';
 import { reducer as requestCodesetReducer } from './requestCodeset';
 import { reducer as resetLocalClientInfoReducer } from './resetLocalClientInfo';
+import { reducer as requestNewClientReducer } from './requestNewClient';
+import { reducer as requestUpdateClientByIdReducer } from './requestUpdateClientById';
+import { reducer as updateLocalHouseholdAddClientReducer } from './updateLocalHouseholdAddClient';
+import { reducer as requestClientHouseholdReducer } from './requestClientHousehold';
 
 const reducers = [
   requestSearchReducer,
@@ -21,6 +25,10 @@ const reducers = [
   createLocalDefaultClientReducer,
   requestCodesetReducer,
   resetLocalClientInfoReducer,
+  requestNewClientReducer,
+  requestUpdateClientByIdReducer,
+  updateLocalHouseholdAddClientReducer,
+  requestClientHouseholdReducer,
 ];
 
 export default function reducer(state = initialState, action) {

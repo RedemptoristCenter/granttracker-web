@@ -78,6 +78,12 @@ export class TabProfile extends Component {
             <Input type='text' name='zipcode' id='zipcode' value={clientInfo.zipcode || ''} onChange={this.handleChangeEvent} />
           </FormGroup>
         </div>
+        <div className='row mt-3'>
+          <FormGroup className='col-12'>
+            <Label for='phone_num'>Phone Number</Label>
+            <Input type='text' name='phone_num' id='phone_num' value={clientInfo.phone_num || ''} onChange={this.handleChangeEvent} />
+          </FormGroup>
+        </div>
       </div>
     );
   }

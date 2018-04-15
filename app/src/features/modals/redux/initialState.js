@@ -6,30 +6,9 @@
 
 // NOTE: initialState constant is necessary so that Rekit could auto add initial state when creating async actions.
 const initialState = {
-  searchResults: [],
-  clientInfo: null,
-  DISABILITY: [],
-  ETHNICITY: [],
-  FAMILY_TYPE: [],
-  GENDER: [],
-  HOUSING: [],
-  RACE: [],
-  RELTN_TO_HOH: [],
-  SSN: [],
-  VETERAN: [],
-  household: [],
-  requestSearchPending: false,
-  requestSearchError: null,
-  requestClientByIdPending: false,
-  requestClientByIdError: null,
-  requestCodesetPending: false,
-  requestCodesetError: null,
-  requestNewClientPending: false,
-  requestNewClientError: null,
-  requestUpdateClientByIdPending: false,
-  requestUpdateClientByIdError: null,
-  requestClientHouseholdPending: false,
-  requestClientHouseholdError: null,
+  open: false,
+  currentModal: null,
+  modalSize: null
 };
 
 export default initialState;

@@ -1,25 +1,40 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import { Label, Input } from 'reactstrap';
+import { Label, Input, Button } from 'reactstrap';
 import { connect } from 'react-redux';
+import * as modalActions from '../../features/modals/redux/actions';
 import * as actions from './redux/actions';
 
 export class TabHousehold extends Component {
   static propTypes = {
     clients: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
+    modalActions: PropTypes.object.isRequired
   };
 
   constructor(props) {
     super(props);
 
     this.handleChangeEvent = this.handleChangeEvent.bind(this);
+    this.renderHouseholdNonsense = this.renderHouseholdNonsense.bind(this);
   }
 
   handleChangeEvent(e) {
     const { name, value } = e.target;
     this.props.actions.updateLocalClientInfo(name, parseInt(value));
+  }
+
+  renderHouseholdNonsense() {
+    return (
+      <div>
+        <Button onClick={() => { this.props.modalActions.openModal('ClientSearchModal', 'lg'); }} color='link' className='float-right'>+ Find Client</Button>
+        <div className='mt-3'>
+          <h3>Additional Household Members</h3>
+        </div>
+        <hr className='mt-0 mb-3' />
+      </div>
+    );
   }
 
   render() {
@@ -44,7 +59,7 @@ export class TabHousehold extends Component {
               }
             </Input>
             {
-              clientInfo.reltn_to_hoh_cd !== 17 ? <div className='text-right'>of Foobar McGee</div> : ''
+              clientInfo.reltn_to_hoh_cd !== 17 ? <div className='text-right'>of Foobar McGee</div> : this.renderHouseholdNonsense()
             }
           </div>
         </div>
@@ -57,13 +72,15 @@ export class TabHousehold extends Component {
 function mapStateToProps(state) {
   return {
     clients: state.clients,
+    modals: state.modals
   };
 }
 
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ ...actions }, dispatch)
+    actions: bindActionCreators({ ...actions }, dispatch),
+    modalActions: bindActionCreators({ ...modalActions }, dispatch)
   };
 }
 

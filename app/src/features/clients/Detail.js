@@ -21,6 +21,8 @@ export class Detail extends Component {
     super(props);
 
     this.toggle = this.toggle.bind(this);
+    this.createClient = this.createClient.bind(this);
+    this.saveClient = this.saveClient.bind(this);
   }
 
   state = {
@@ -43,6 +45,16 @@ export class Detail extends Component {
     this.props.actions.resetLocalClientInfo();
   }
 
+  createClient() {
+    const { clientInfo } = this.props.clients;
+    this.props.actions.requestNewClient(clientInfo);
+  }
+
+  saveClient() {
+    const { clientInfo } = this.props.clients;
+    this.props.actions.requestUpdateClientById(clientInfo);
+  }
+
   toggle(tab) {
     if (this.state.activeTab !== tab) {
       this.setState({
@@ -53,6 +65,10 @@ export class Detail extends Component {
 
   renderClientInfo() {
     const { clientInfo } = this.props.clients;
+    const { client_id } = this.props.match.params;
+
+    console.log('wtf', clientInfo);
+
     if (!clientInfo) { return ''; }
 
     return (
@@ -62,7 +78,12 @@ export class Detail extends Component {
             <span className='clients-detail__back-arrow' onClick={() => { history.push('/clients'); }}><i className='fas fa-arrow-left' /></span>
             &nbsp;&nbsp;&nbsp;{clientInfo.Fname} {clientInfo.Lname}
           </h2>
-          <Button size='sm' className='col-3' color='primary' onClick={() => { alert('sup!'); }}>Save</Button>
+          {
+            client_id === 'new' ?
+              <Button size='sm' className='col-3' color='primary' onClick={this.createClient}>Create</Button>
+              :
+              <Button size='sm' className='col-3' color='primary' onClick={this.saveClient}>Save</Button>
+          }
         </div>
         <hr />
         <div>

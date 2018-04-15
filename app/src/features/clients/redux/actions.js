@@ -4,3 +4,7 @@ export { updateLocalClientInfo } from './updateLocalClientInfo';
 export { createLocalDefaultClient } from './createLocalDefaultClient';
 export { requestCodeset, dismissRequestCodesetError } from './requestCodeset';
 export { resetLocalClientInfo } from './resetLocalClientInfo';
+export { requestNewClient, dismissRequestNewClientError } from './requestNewClient';
+export { requestUpdateClientById, dismissRequestUpdateClientByIdError } from './requestUpdateClientById';
+export { updateLocalHouseholdAddClient } from './updateLocalHouseholdAddClient';
+export { requestClientHousehold, dismissRequestClientHouseholdError } from './requestClientHousehold';

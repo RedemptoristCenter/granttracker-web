@@ -11,12 +11,24 @@ export class Table extends Component {
   static propTypes = {
     clients: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
+    customSelect: PropTypes.func
   };
 
   constructor(props) {
     super(props);
 
     this.renderResults = this.renderResults.bind(this);
+    this.select = this.select.bind(this);
+  }
+
+  select(searchResult) {
+    if (this.props.customSelect) {
+      this.props.customSelect(searchResult);
+      return true;
+    }
+
+    history.push(`/clients/${searchResult.client_id}`);
+    return true;
   }
 
   renderResults() {
@@ -50,7 +62,7 @@ export class Table extends Component {
           searchResults.map(searchResult => (
             <tr
               key={`search-result-client-${searchResult.client_id}`}
-              onClick={() => { history.push(`/clients/${searchResult.client_id}`); }}
+              onClick={() => { this.select(searchResult); }}
             >
               <td>{searchResult.Fname}</td>
               <td>{searchResult.Lname}</td>
