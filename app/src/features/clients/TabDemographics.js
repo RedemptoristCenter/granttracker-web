@@ -24,6 +24,8 @@ export class TabDemographics extends Component {
 
   render() {
     const { clientInfo } = this.props.clients;
+    if (!clientInfo) { return ''; }
+
     return (
       <div className='clients-tab-demographics mt-4'>
         <div className='row'>

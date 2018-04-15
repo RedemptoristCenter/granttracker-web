@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Nav, NavItem, NavLink, Col, Card, Button } from 'reactstrap';
 import history from '../../common/history';
 
+import { DefaultPage as ModalWrapper } from '../../features/modals';
+
 export default class Container extends Component {
   static propTypes = {
     children: PropTypes.any,
@@ -31,8 +33,8 @@ export default class Container extends Component {
   }
 
   render() {
-    return (
-      <div className='app-container row align-items-stretch justify-content-around m-0'>
+    return [
+      <div className='app-container row align-items-stretch justify-content-around m-0' key='app-container'>
         <Col xs='1' className='nav-bar__left'>
           <div>
             <img className='nav-logo' src={require('../../images/logo-mark.svg')} />
@@ -79,7 +81,8 @@ export default class Container extends Component {
             </Card>
           </div>
         </Col>
-      </div>
-    );
+      </div>,
+      <ModalWrapper key='modal-wrapper' />
+    ];
   }
 }

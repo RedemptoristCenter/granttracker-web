@@ -17,12 +17,21 @@ const initialState = {
   RELTN_TO_HOH: [],
   SSN: [],
   VETERAN: [],
+  household: [],
   requestSearchPending: false,
   requestSearchError: null,
   requestClientByIdPending: false,
   requestClientByIdError: null,
   requestCodesetPending: false,
   requestCodesetError: null,
+  requestNewClientPending: false,
+  requestNewClientError: null,
+  requestUpdateClientByIdPending: false,
+  requestUpdateClientByIdError: null,
+  requestClientHouseholdPending: false,
+  requestClientHouseholdError: null,
+  requestUpdateClientHouseholdPending: false,
+  requestUpdateClientHouseholdError: null,
 };
 
 export default initialState;

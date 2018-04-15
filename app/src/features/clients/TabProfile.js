@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { FormGroup, Label, Input } from 'reactstrap';
-import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
@@ -31,6 +30,7 @@ export class TabProfile extends Component {
 
   render() {
     const { clientInfo } = this.props.clients;
+    if (!clientInfo) { return ''; }
     return (
       <div className='clients-tab-profile mt-4'>
         <div className='row'>
@@ -76,6 +76,12 @@ export class TabProfile extends Component {
           <FormGroup className='col'>
             <Label for='zipcode'>Zip Code</Label>
             <Input type='text' name='zipcode' id='zipcode' value={clientInfo.zipcode || ''} onChange={this.handleChangeEvent} />
+          </FormGroup>
+        </div>
+        <div className='row mt-3'>
+          <FormGroup className='col-12'>
+            <Label for='phone_num'>Phone Number</Label>
+            <Input type='text' name='phone_num' id='phone_num' value={clientInfo.phone_num || ''} onChange={this.handleChangeEvent} />
           </FormGroup>
         </div>
       </div>

@@ -21,6 +21,8 @@ export class Detail extends Component {
     super(props);
 
     this.toggle = this.toggle.bind(this);
+    this.createClient = this.createClient.bind(this);
+    this.saveClient = this.saveClient.bind(this);
   }
 
   state = {
@@ -33,14 +35,45 @@ export class Detail extends Component {
 
     if (client_id === 'new') { this.props.actions.createLocalDefaultClient(); return true; }
     this.props.actions.requestClientById({ client_id });
+    this.props.actions.requestClientHousehold({ client_id });
 
     console.log('client_id', client_id);
+    return true;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.match.params.client_id !== this.props.match.params.client_id) {
+      const { client_id } = nextProps.match.params;
+
+      console.log('ding', client_id);
+      if (client_id === 'new') { this.props.actions.createLocalDefaultClient(); return true; }
+      this.props.actions.requestClientById({ client_id });
+      this.props.actions.requestClientHousehold({ client_id });
+    }
+
     return true;
   }
 
   componentWillUnmount() {
     console.log('unmounting');
     this.props.actions.resetLocalClientInfo();
+  }
+
+  createClient() {
+    const { clientInfo } = this.props.clients;
+    this.props.actions.requestNewClient(clientInfo);
+  }
+
+  saveClient() {
+    const { clientInfo, household } = this.props.clients;
+    this.props.actions.requestUpdateClientById(clientInfo);
+
+    const clientIds = [];
+    household.forEach((client) => {
+      clientIds.push(client.client_id);
+    });
+
+    this.props.actions.requestUpdateClientHousehold({ client_id: clientInfo.client_id, householdMembers: clientIds });
   }
 
   toggle(tab) {
@@ -53,6 +86,10 @@ export class Detail extends Component {
 
   renderClientInfo() {
     const { clientInfo } = this.props.clients;
+    const { client_id } = this.props.match.params;
+
+    console.log('wtf', clientInfo);
+
     if (!clientInfo) { return ''; }
 
     return (
@@ -62,7 +99,12 @@ export class Detail extends Component {
             <span className='clients-detail__back-arrow' onClick={() => { history.push('/clients'); }}><i className='fas fa-arrow-left' /></span>
             &nbsp;&nbsp;&nbsp;{clientInfo.Fname} {clientInfo.Lname}
           </h2>
-          <Button size='sm' className='col-3' color='primary' onClick={() => { alert('sup!'); }}>Save</Button>
+          {
+            client_id === 'new' ?
+              <Button size='sm' className='col-3' color='primary' onClick={this.createClient}>Create</Button>
+              :
+              <Button size='sm' className='col-3' color='primary' onClick={this.saveClient}>Save</Button>
+          }
         </div>
         <hr />
         <div>
@@ -123,7 +165,7 @@ export class Detail extends Component {
     return (
       <Container title='Clients'>
         <div className='clients-detail row justify-content-between align-items-stretch'>
-          <div className='col'>
+          <div className='col clients-detail__scrollable-area'>
             {this.props.clients.requestClientByIdPending ? 'Loading...' : this.renderClientInfo()}
           </div>
           <AssistanceLog className='col-3' name='Assistance Log' data={[]} buttonLabel='Provide Assistance' />
