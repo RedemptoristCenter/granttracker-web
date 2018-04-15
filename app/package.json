@@ -86,6 +86,8 @@
     "classnames": "^2.2.5",
     "moment": "^2.22.0",
     "react-datepicker": "^1.4.1",
-    "reactstrap": "^5.0.0"
+    "react-text-mask": "^5.3.0",
+    "reactstrap": "^5.0.0",
+    "text-mask-addons": "^3.7.2"
   }
 }
