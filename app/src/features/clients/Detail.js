@@ -26,6 +26,8 @@ export class Detail extends Component {
     this.toggle = this.toggle.bind(this);
     this.createClient = this.createClient.bind(this);
     this.saveClient = this.saveClient.bind(this);
+    this.goToDetailPDF = this.goToDetailPDF.bind(this);
+    this.goToConsentPDF = this.goToConsentPDF.bind(this);
   }
 
   state = {
@@ -87,6 +89,15 @@ export class Detail extends Component {
     }
   }
 
+  goToConsentPDF() {
+    const { clientInfo } = this.props.clients;
+    history.push(``);
+  }
+
+  goToDetailPDF() {
+
+  }
+
   renderClientInfo() {
     const { clientInfo } = this.props.clients;
     const { client_id } = this.props.match.params;
@@ -102,12 +113,10 @@ export class Detail extends Component {
             <span className='clients-detail__back-arrow' onClick={() => { history.push('/clients'); }}><i className='fas fa-arrow-left' /></span>
             &nbsp;&nbsp;&nbsp;{clientInfo.Fname} {clientInfo.Lname}
           </h2>
-          {
-            client_id === 'new' ?
-              <Button size='sm' className='col-3' color='primary' onClick={this.createClient}>Create</Button>
-              :
-              <Button size='sm' className='col-3' color='primary' onClick={this.saveClient}>Save</Button>
-          }
+          <div className='clients-detail__action-icons row m-0 align-items-center justify-content-center'>
+            {/* <div className='clients-detail__icon-link' onClick={this.goToDetailPDF}><i className='fas fa-file-alt' /></div> */}
+            <a href={`/client-pdf/consent?Fname=${clientInfo.Fname}&Lname=${clientInfo.Lname}`} target='_blank' className='clients-detail__icon-link'><i className='fas fa-clipboard-check' /></a>
+          </div>
         </div>
         <hr />
         <div>
@@ -159,6 +168,13 @@ export class Detail extends Component {
               <TabIncome />
             </TabPane>
           </TabContent>
+          <hr />
+          {
+            client_id === 'new' ?
+              <Button size='sm' className='col-3' color='primary' onClick={this.createClient}>Create</Button>
+              :
+              <Button size='sm' className='col-3' color='primary' onClick={this.saveClient}>Save</Button>
+          }
         </div>
       </div>
     );

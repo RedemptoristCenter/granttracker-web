@@ -85,6 +85,7 @@
     "bootstrap": "^4.1.0",
     "classnames": "^2.2.5",
     "moment": "^2.22.0",
+    "query-string": "^6.0.0",
     "react-datepicker": "^1.4.1",
     "react-text-mask": "^5.3.0",
     "reactstrap": "^5.0.0",
