@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Container } from '../../features/app';
-import { Button, FormGroup, Label, Input } from 'reactstrap';
+import { Button, FormGroup, Label, Input, Col } from 'reactstrap';
 import MaskedInput from 'react-text-mask';
 import moment from 'moment/moment';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask'
+import { GrantsLog } from './GrantsLog';
 import * as actions from './redux/actions';
 import history from '../../common/history';
 
@@ -56,76 +57,80 @@ export class Detail extends Component {
 
     if (!grantInfo) { return ''; }
 
-    return (
-      <div>
-        <div className='row justify-content-between align-items-center m-0'>
-          <h2>
-            <span className='clients-detail__back-arrow' onClick={() => { history.push('/grants'); }}><i className='fas fa-arrow-left' /></span>
-            &nbsp;&nbsp;&nbsp;{grantInfo.grant_name}
-          </h2>
-          <Button size='sm' className='col-3' color='primary' onClick={() => { alert('sup!'); }}>Save</Button>
-        </div>
-        <br />
-        <div>
-          <FormGroup className='col'>
-            <Label for='grant_name'>Grant Name</Label>
-            <Input type='text' name='grant_name' id='grant_name' value={grantInfo.grant_name || ''} onChange={this.handleChangeEvent} />
-          </FormGroup>
-          <FormGroup className='col'>
-            <Label for='start_dt_tm'>Grant Start Date</Label>
-            <Input
-              type='date'
-              max='2999-12-31'
-              name='start_dt_tm'
-              id='start_dt_tm'
-              placeholder='Grant Start Date'
-              bsSize='sm'
-              value={moment.unix(grantInfo.start_dt_tm).format("YYYY-MM-DD")}
-              onChange={this.handleStartDateChange}
-            />
+    return ([
+      <div key='GrantsForm' className='grants-detail__form-wrapper'>
+        <Col className='grants-detail__max-height' xs='9'>
+          <div className='row justify-content-between align-items-center m-0'>
+            <h2>
+              <span className='clients-detail__back-arrow' onClick={() => { history.push('/grants'); }}><i className='fas fa-arrow-left' /></span>
+              &nbsp;&nbsp;&nbsp;{grantInfo.grant_name}
+            </h2>
+            <Button size='sm' className='col-3' color='primary' onClick={() => { alert('sup!'); }}>Save</Button>
+          </div>
+          <br />
+        
+          <div>
+            <FormGroup className='col'>
+              <Label for='grant_name'>Grant Name</Label>
+              <Input type='text' name='grant_name' id='grant_name' value={grantInfo.grant_name || ''} onChange={this.handleChangeEvent} />
             </FormGroup>
-          <FormGroup className='col'>
-            <Label for='end_dt_tm'>Grant End Date</Label>
-            <Input
-              type='date'
-              max='2999-12-31'
-              name='end_dt_tm'
-              id='end_dt_tm'
-              placeholder='Grant End Date'
-              bsSize='sm'
-              value={moment.unix(grantInfo.end_dt_tm).format("YYYY-MM-DD")}
-              onChange={this.handleEndDateChange}
-            />
-          </FormGroup>
-          <FormGroup className='col'>
-            <Label for='initial_amount'>Initial Amount</Label>
-            <MaskedInput
-              mask={numberMask}
-              className="form-control"
-              placeholder=''
-              guide={false}
-              id='initial_amount'
-              name='initial_amount'
-              value={grantInfo.initial_amount || ''}
-              onChange={this.handleChangeEvent}
-            />
-          </FormGroup>
-          <FormGroup className='col'>
-            <Label for='remaining_amount'>Remaining Amount</Label>
-            <MaskedInput
-              mask={numberMask}
-              className="form-control"
-              placeholder=''
-              guide={false}
-              id='remaining_amount'
-              name='remaining_amount'
-              value={grantInfo.remaining_amount || ''}
-              onChange={this.handleChangeEvent}
-            />
-          </FormGroup>
-        </div>
+            <FormGroup className='col'>
+              <Label for='start_dt_tm'>Grant Start Date</Label>
+              <Input
+                type='date'
+                max='2999-12-31'
+                name='start_dt_tm'
+                id='start_dt_tm'
+                placeholder='Grant Start Date'
+                bsSize='sm'
+                value={moment.unix(grantInfo.start_dt_tm).format("YYYY-MM-DD")}
+                onChange={this.handleStartDateChange}
+              />
+              </FormGroup>
+            <FormGroup className='col'>
+              <Label for='end_dt_tm'>Grant End Date</Label>
+              <Input
+                type='date'
+                max='2999-12-31'
+                name='end_dt_tm'
+                id='end_dt_tm'
+                placeholder='Grant End Date'
+                bsSize='sm'
+                value={moment.unix(grantInfo.end_dt_tm).format("YYYY-MM-DD")}
+                onChange={this.handleEndDateChange}
+              />
+            </FormGroup>
+            <FormGroup className='col'>
+              <Label for='initial_amount'>Initial Amount</Label>
+              <MaskedInput
+                mask={numberMask}
+                className="form-control"
+                placeholder=''
+                guide={false}
+                id='initial_amount'
+                name='initial_amount'
+                value={grantInfo.initial_amount || ''}
+                onChange={this.handleChangeEvent}
+              />
+            </FormGroup>
+            <FormGroup className='col'>
+              <Label for='remaining_amount'>Remaining Amount</Label>
+              <MaskedInput
+                mask={numberMask}
+                className="form-control"
+                placeholder=''
+                guide={false}
+                id='remaining_amount'
+                name='remaining_amount'
+                value={grantInfo.remaining_amount || ''}
+                onChange={this.handleChangeEvent}
+              />
+            </FormGroup>
+          </div>
+        </Col>
+        <GrantsLog key='grantsLog' grants={[]} />
       </div>
-    );
+    ]);
   }
 
   render() {
