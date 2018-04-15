@@ -22,7 +22,11 @@ export function updateGrant(args = {}) {
       // doRequest is a placeholder Promise. You should replace it with your own logic.
       // See the real-word example at:  https://github.com/supnate/rekit/blob/master/src/features/home/redux/fetchRedditReactjsList.js
       // args.error here is only for test coverage purpose.
-      const doRequest = axios.post(`${window.app_config.api_url}/grant/update/${args.grantInfo.grant_id}`, args.grantInfo);
+      let newGrant = args.grantInfo;
+      newGrant.initial_amount = Number(newGrant.initial_amount.replace(/[^0-9\.-]+/g,""));
+      newGrant.remaining_amount = Number(newGrant.remaining_amount.replace(/[^0-9\.-]+/g,""));
+
+      const doRequest = axios.post(`${window.app_config.api_url}/grant/update/${args.grantInfo.grant_id}`, newGrant);
       doRequest.then(
         (res) => {
           dispatch({
