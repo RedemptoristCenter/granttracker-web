@@ -5,6 +5,7 @@ import commonReducer from '../features/common/redux/reducer';
 import appReducer from '../features/app/redux/reducer';
 import clientsReducer from '../features/clients/redux/reducer';
 import grantsReducer from '../features/grants/redux/reducer';
+import modalsReducer from '../features/modals/redux/reducer';
 import loginReducer from '../features/login/redux/reducer';
 
 // NOTE 1: DO NOT CHANGE the 'reducerMap' name and the declaration pattern.
@@ -20,6 +21,7 @@ const reducerMap = {
   clients: clientsReducer,
   grants: grantsReducer,
   login: loginReducer,
+  modals: modalsReducer,
 };
 
 export default combineReducers(reducerMap);

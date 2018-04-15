@@ -17,7 +17,28 @@ export function reducer(state, action) {
     case CLIENTS_CREATE_LOCAL_DEFAULT_CLIENT:
       return {
         ...state,
-        clientInfo: {}
+        clientInfo: {
+          Fname: '',
+          Lname: '',
+          Mname: '',
+          address: '',
+          birth_date: '',
+          city: '',
+          disability_cd: 59,
+          ethnicity_cd: 39,
+          family_type_cd: 14,
+          gender_cd: 4,
+          hoh_client_id: null,
+          house_size: 0,
+          housing_cd: 53,
+          phone_num: '',
+          race_cd: 46,
+          reltn_to_hoh_cd: 0,
+          ssn_cd: 0,
+          state: '',
+          veteran_cd: 63,
+          zipcode: ''
+        }
       };
 
     default:
