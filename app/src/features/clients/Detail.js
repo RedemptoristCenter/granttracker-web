@@ -35,6 +35,7 @@ export class Detail extends Component {
 
     if (client_id === 'new') { this.props.actions.createLocalDefaultClient(); return true; }
     this.props.actions.requestClientById({ client_id });
+    this.props.actions.requestClientHousehold({ client_id });
 
     console.log('client_id', client_id);
     return true;
@@ -51,8 +52,15 @@ export class Detail extends Component {
   }
 
   saveClient() {
-    const { clientInfo } = this.props.clients;
+    const { clientInfo, household } = this.props.clients;
     this.props.actions.requestUpdateClientById(clientInfo);
+
+    const clientIds = [];
+    household.forEach((client) => {
+      clientIds.push(client.client_id);
+    });
+
+    this.props.actions.requestUpdateClientHousehold({ client_id: clientInfo.client_id, householdMembers: clientIds });
   }
 
   toggle(tab) {

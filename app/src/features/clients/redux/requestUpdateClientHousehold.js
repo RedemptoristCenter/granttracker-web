@@ -1,17 +1,17 @@
 import axios from 'axios';
 import {
-  CLIENTS_REQUEST_CLIENT_HOUSEHOLD_BEGIN,
-  CLIENTS_REQUEST_CLIENT_HOUSEHOLD_SUCCESS,
-  CLIENTS_REQUEST_CLIENT_HOUSEHOLD_FAILURE,
-  CLIENTS_REQUEST_CLIENT_HOUSEHOLD_DISMISS_ERROR,
+  CLIENTS_REQUEST_UPDATE_CLIENT_HOUSEHOLD_BEGIN,
+  CLIENTS_REQUEST_UPDATE_CLIENT_HOUSEHOLD_SUCCESS,
+  CLIENTS_REQUEST_UPDATE_CLIENT_HOUSEHOLD_FAILURE,
+  CLIENTS_REQUEST_UPDATE_CLIENT_HOUSEHOLD_DISMISS_ERROR,
 } from './constants';
 
 // Rekit uses redux-thunk for async actions by default: https://github.com/gaearon/redux-thunk
 // If you prefer redux-saga, you can use rekit-plugin-redux-saga: https://github.com/supnate/rekit-plugin-redux-saga
-export function requestClientHousehold(args = {}) {
+export function requestUpdateClientHousehold(args = {}) {
   return (dispatch) => { // optionally you can have getState as the second argument
     dispatch({
-      type: CLIENTS_REQUEST_CLIENT_HOUSEHOLD_BEGIN,
+      type: CLIENTS_REQUEST_UPDATE_CLIENT_HOUSEHOLD_BEGIN,
     });
 
     // Return a promise so that you could control UI flow without states in the store.
@@ -22,19 +22,19 @@ export function requestClientHousehold(args = {}) {
       // doRequest is a placeholder Promise. You should replace it with your own logic.
       // See the real-word example at:  https://github.com/supnate/rekit/blob/master/src/features/home/redux/fetchRedditReactjsList.js
       // args.error here is only for test coverage purpose.
-      const doRequest = axios.get(`${window.app_config.api_url}/client/${args.client_id}/household`);
+      const doRequest = axios.post(`${window.app_config.api_url}/client/${args.client_id}/household`, { householdMembers: args.householdMembers });
       doRequest.then(
         (res) => {
           dispatch({
-            type: CLIENTS_REQUEST_CLIENT_HOUSEHOLD_SUCCESS,
-            data: res.data,
+            type: CLIENTS_REQUEST_UPDATE_CLIENT_HOUSEHOLD_SUCCESS,
+            data: res,
           });
           resolve(res);
         },
         // Use rejectHandler as the second argument so that render errors won't be caught.
         (err) => {
           dispatch({
-            type: CLIENTS_REQUEST_CLIENT_HOUSEHOLD_FAILURE,
+            type: CLIENTS_REQUEST_UPDATE_CLIENT_HOUSEHOLD_FAILURE,
             data: { error: err },
           });
           reject(err);
@@ -48,45 +48,43 @@ export function requestClientHousehold(args = {}) {
 
 // Async action saves request error by default, this method is used to dismiss the error info.
 // If you don't want errors to be saved in Redux store, just ignore this method.
-export function dismissRequestClientHouseholdError() {
+export function dismissRequestUpdateClientHouseholdError() {
   return {
-    type: CLIENTS_REQUEST_CLIENT_HOUSEHOLD_DISMISS_ERROR,
+    type: CLIENTS_REQUEST_UPDATE_CLIENT_HOUSEHOLD_DISMISS_ERROR,
   };
 }
 
 export function reducer(state, action) {
   switch (action.type) {
-    case CLIENTS_REQUEST_CLIENT_HOUSEHOLD_BEGIN:
+    case CLIENTS_REQUEST_UPDATE_CLIENT_HOUSEHOLD_BEGIN:
       // Just after a request is sent
       return {
         ...state,
-        requestClientHouseholdPending: true,
-        requestClientHouseholdError: null,
-        household: []
+        requestUpdateClientHouseholdPending: true,
+        requestUpdateClientHouseholdError: null,
       };
 
-    case CLIENTS_REQUEST_CLIENT_HOUSEHOLD_SUCCESS:
+    case CLIENTS_REQUEST_UPDATE_CLIENT_HOUSEHOLD_SUCCESS:
       // The request is success
       return {
         ...state,
-        requestClientHouseholdPending: false,
-        requestClientHouseholdError: null,
-        household: action.data
+        requestUpdateClientHouseholdPending: false,
+        requestUpdateClientHouseholdError: null,
       };
 
-    case CLIENTS_REQUEST_CLIENT_HOUSEHOLD_FAILURE:
+    case CLIENTS_REQUEST_UPDATE_CLIENT_HOUSEHOLD_FAILURE:
       // The request is failed
       return {
         ...state,
-        requestClientHouseholdPending: false,
-        requestClientHouseholdError: action.data.error,
+        requestUpdateClientHouseholdPending: false,
+        requestUpdateClientHouseholdError: action.data.error,
       };
 
-    case CLIENTS_REQUEST_CLIENT_HOUSEHOLD_DISMISS_ERROR:
+    case CLIENTS_REQUEST_UPDATE_CLIENT_HOUSEHOLD_DISMISS_ERROR:
       // Dismiss the request failure error
       return {
         ...state,
-        requestClientHouseholdError: null,
+        requestUpdateClientHouseholdError: null,
       };
 
     default:

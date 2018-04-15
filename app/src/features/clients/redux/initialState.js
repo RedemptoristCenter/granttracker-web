@@ -30,6 +30,8 @@ const initialState = {
   requestUpdateClientByIdError: null,
   requestClientHouseholdPending: false,
   requestClientHouseholdError: null,
+  requestUpdateClientHouseholdPending: false,
+  requestUpdateClientHouseholdError: null,
 };
 
 export default initialState;

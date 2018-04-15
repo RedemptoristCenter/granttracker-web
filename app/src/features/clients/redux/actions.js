@@ -8,3 +8,5 @@ export { requestNewClient, dismissRequestNewClientError } from './requestNewClie
 export { requestUpdateClientById, dismissRequestUpdateClientByIdError } from './requestUpdateClientById';
 export { updateLocalHouseholdAddClient } from './updateLocalHouseholdAddClient';
 export { requestClientHousehold, dismissRequestClientHouseholdError } from './requestClientHousehold';
+export { updateLocalHouseholdRemoveClient } from './updateLocalHouseholdRemoveClient';
+export { requestUpdateClientHousehold, dismissRequestUpdateClientHouseholdError } from './requestUpdateClientHousehold';

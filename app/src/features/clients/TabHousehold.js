@@ -26,6 +26,7 @@ export class TabHousehold extends Component {
   }
 
   renderHouseholdNonsense() {
+    const { household } = this.props.clients;
     return (
       <div>
         <Button onClick={() => { this.props.modalActions.openModal('ClientSearchModal', 'lg'); }} color='link' className='float-right'>+ Find Client</Button>
@@ -33,6 +34,11 @@ export class TabHousehold extends Component {
           <h3>Additional Household Members</h3>
         </div>
         <hr className='mt-0 mb-3' />
+        {
+          household.map(client => (
+            <div key={`household-client-${client.client_id}`}>{client.Fname}</div>
+          ))
+        }
       </div>
     );
   }
