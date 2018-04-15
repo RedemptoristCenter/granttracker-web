@@ -15,7 +15,9 @@ const initialState = {
   getGrantLogPending: false,
   getGrantLogError: null,
   createGrantPending: false,
-  createGrantError: null
+  createGrantError: null,
+  updateGrantPending: false,
+  updateGrantError: null
 };
 
 export default initialState;

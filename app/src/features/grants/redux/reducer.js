@@ -13,6 +13,7 @@ import { reducer as updateLocalGrantInfoReducer } from './updateLocalGrantInfo';
 import { reducer as createLocalDefaultGrantReducer } from './createLocalDefaultGrant';
 import { reducer as getGrantLogReducer } from './getGrantLog';
 import { reducer as createGrantReducer } from './createGrant';
+import { reducer as updateGrantReducer } from './updateGrant';
 
 const reducers = [
   requestSearchReducer,
@@ -21,6 +22,7 @@ const reducers = [
   createLocalDefaultGrantReducer,
   getGrantLogReducer,
   createGrantReducer,
+  updateGrantReducer,
 ];
 
 export default function reducer(state = initialState, action) {

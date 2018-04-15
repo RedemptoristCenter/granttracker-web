@@ -78,7 +78,7 @@ export class Detail extends Component {
               <span className='clients-detail__back-arrow' onClick={() => { history.push('/grants'); }}><i className='fas fa-arrow-left' /></span>
               &nbsp;&nbsp;&nbsp;{grantInfo.grant_name}
             </h2>
-            <Button size='sm' className='col-3' color='primary' onClick={() => { this.props.actions.createGrant({ grantInfo }).then(history.push('/grants')); }}>Save</Button>
+            <Button size='sm' className='col-3' color='primary' onClick={() => { !grantInfo.grant_id? this.props.actions.createGrant({ grantInfo }).then(history.push('/grants')) : this.props.actions.updateGrant({ grantInfo }).then(history.push('/grants'));  }}>Save</Button>
           </div>
           <br />
         

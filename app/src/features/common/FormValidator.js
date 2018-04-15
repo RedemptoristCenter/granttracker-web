@@ -12,10 +12,7 @@ export class FormValidator extends Component {
   };
 
   render() {
-    let value = this.props.value !== null 
-    && this.props.value !== '' 
-    && this.props.value !== undefined
-    && this.props.value !== 'Invalid date' ? true : false;
+    let value = !!this.props.value === true && this.props.value !== 'Invalid date';
   
     return (
       <div className='common-form-validator'>
