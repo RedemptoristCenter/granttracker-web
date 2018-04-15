@@ -8,7 +8,7 @@ import MaskedInput from 'react-text-mask';
 import moment from 'moment/moment';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import FormValidator from '../.././Features/Common/FormValidator';
-import { GrantsLog } from './GrantsLog';
+import { GrantsLog } from './';
 import * as actions from './redux/actions';
 import history from '../../common/history';
 
@@ -151,7 +151,7 @@ export class Detail extends Component {
             </FormGroup>
           </div>
         </Col>
-        <GrantsLog key='grantsLog' grants={[]} />
+        <GrantsLog key='grantsLog' grantInfo={grantInfo} />
       </div>
     ]);
   }

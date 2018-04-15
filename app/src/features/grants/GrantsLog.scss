@@ -1,22 +1,13 @@
 @import '../../styles/mixins';
 
-.grants-log {
-  border-left: 1px solid #dedede;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-
-  &__listing {
-    width: 100%;
-    padding: 10px;
-    overflow: scroll;
-    overflow-x: hidden;
-  }
+.grants-grants-log {
+  
+  border-left: 1px solid #e2e2e2 !important;
+  padding: 16px;
 
   &__card {
-    border: 1px solid gray !important;
-    margin: 5px !important;
+    padding: 5px !important;
+    border: 1px solid #e2e2e2 !important;
+    box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.03) !important;
   }
 }
-
