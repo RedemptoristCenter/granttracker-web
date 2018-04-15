@@ -11,7 +11,9 @@ const initialState = {
   modalSize: null,
   grants: [],
   requestCurrentGrantsPending: false,
-  requestCurrentGrantsError: null
+  requestCurrentGrantsError: null,
+  requestCreateTransactionPending: false,
+  requestCreateTransactionError: null
 };
 
 export default initialState;

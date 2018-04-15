@@ -10,11 +10,13 @@ import initialState from './initialState';
 import { reducer as openModalReducer } from './openModal';
 import { reducer as closeModalReducer } from './closeModal';
 import { reducer as requestCurrentGrantsReducer } from './requestCurrentGrants';
+import { reducer as requestCreateTransactionReducer } from './requestCreateTransaction';
 
 const reducers = [
   openModalReducer,
   closeModalReducer,
   requestCurrentGrantsReducer,
+  requestCreateTransactionReducer,
 ];
 
 export default function reducer(state = initialState, action) {
