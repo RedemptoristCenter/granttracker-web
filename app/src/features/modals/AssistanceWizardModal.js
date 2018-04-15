@@ -147,7 +147,7 @@ export class AssistanceWizardModal extends Component {
 
     const body = {
       client_id: clientInfo.client_id,
-      transaction_type: transType,
+      trans_type: transType,
       reason_cd: parseInt(this.state.assistance_cd),
       grants: this.state.assistance_funds,
       assistance_transaction_obj: this.state.assistance_transaction_obj,
