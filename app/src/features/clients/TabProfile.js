@@ -61,10 +61,8 @@ export class TabProfile extends Component {
             </FormValidator>
           </FormGroup>
           <FormGroup className='col-2'>
-            <FormValidator value={clientInfo.Mname || ''}>
-              <Label for='Mname'>M. Initial</Label>
-              <Input type='text' name='Mname' id='Mname' value={clientInfo.Mname || ''} onChange={this.handleChangeEvent} />
-            </FormValidator>
+            <Label for='Mname'>M. Initial</Label>
+            <Input type='text' name='Mname' id='Mname' value={clientInfo.Mname || ''} onChange={this.handleChangeEvent} />
           </FormGroup>
           <FormGroup className='col'>
             <FormValidator value={moment.unix(clientInfo.birth_date).format("YYYY-MM-DD")}>

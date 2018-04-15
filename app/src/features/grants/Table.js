@@ -12,12 +12,24 @@ export class Table extends Component {
   static propTypes = {
     grants: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
+    customSelect: PropTypes.func
   };
 
   constructor(props) {
     super(props);
 
+    this.select = this.select.bind(this);
     this.renderResults = this.renderResults.bind(this);
+  }
+
+  select(searchResult) {
+    if (this.props.customSelect) {
+      this.props.customSelect(searchResult);
+      return true;
+    }
+
+    history.push(`/grants/${searchResult.grant_id}`);
+    return true;
   }
 
   renderResults() {
@@ -49,8 +61,9 @@ export class Table extends Component {
       <tbody>
         {
         searchResults.map(searchResult => (
-          <tr key={`search-result-grant-${searchResult.grant_id}`}
-          onClick={() => { history.push(`/grants/${searchResult.grant_id}`); }}
+          <tr
+            key={`search-result-grant-${searchResult.grant_id}`}
+            onClick={() => { this.select(searchResult); }}
           >
             <td>{searchResult.grant_name}</td>
             <td>{accounting.formatMoney(searchResult.initial_amount)}</td>
