@@ -1,0 +1,10 @@
+@import '../../styles/mixins';
+
+.grants-log {
+  border-left: 1px solid #dedede;
+  width: 100%;
+
+  &__listing {
+    height: calc(100% - 75px);
+  }
+}

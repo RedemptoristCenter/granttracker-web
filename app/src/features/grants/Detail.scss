@@ -2,4 +2,8 @@
 
 .grants-detail {
 
+  &__form-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }  
 }
