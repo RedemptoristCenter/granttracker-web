@@ -3,6 +3,7 @@
 
 import {
   DefaultPage,
+  Detail,
 } from './';
 
 export default {
@@ -10,5 +11,6 @@ export default {
   name: 'Reports',
   childRoutes: [
     { path: 'default-page', name: 'Default page', component: DefaultPage, isIndex: true },
+    { path: '/reports/:grant_id', name: 'Detail', component: Detail },
   ],
 };
