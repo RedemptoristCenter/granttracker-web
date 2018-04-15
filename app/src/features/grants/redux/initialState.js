@@ -8,6 +8,7 @@
 const initialState = {
   searchResults: [],
   grantInfo: null,
+  grantFeed: [],
   requestSearchPending: false,
   requestSearchError: null,
   requestGrantByIdPending: false,
