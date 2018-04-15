@@ -1,17 +1,17 @@
 import axios from 'axios';
 import {
-  CLIENTS_REQUEST_CODESET_BEGIN,
-  CLIENTS_REQUEST_CODESET_SUCCESS,
-  CLIENTS_REQUEST_CODESET_FAILURE,
-  CLIENTS_REQUEST_CODESET_DISMISS_ERROR,
+  MODALS_REQUEST_CREATE_TRANSACTION_BEGIN,
+  MODALS_REQUEST_CREATE_TRANSACTION_SUCCESS,
+  MODALS_REQUEST_CREATE_TRANSACTION_FAILURE,
+  MODALS_REQUEST_CREATE_TRANSACTION_DISMISS_ERROR,
 } from './constants';
 
 // Rekit uses redux-thunk for async actions by default: https://github.com/gaearon/redux-thunk
 // If you prefer redux-saga, you can use rekit-plugin-redux-saga: https://github.com/supnate/rekit-plugin-redux-saga
-export function requestCodeset(args = {}) {
+export function requestCreateTransaction(args = {}) {
   return (dispatch) => { // optionally you can have getState as the second argument
     dispatch({
-      type: CLIENTS_REQUEST_CODESET_BEGIN,
+      type: MODALS_REQUEST_CREATE_TRANSACTION_BEGIN,
     });
 
     // Return a promise so that you could control UI flow without states in the store.
@@ -22,19 +22,19 @@ export function requestCodeset(args = {}) {
       // doRequest is a placeholder Promise. You should replace it with your own logic.
       // See the real-word example at:  https://github.com/supnate/rekit/blob/master/src/features/home/redux/fetchRedditReactjsList.js
       // args.error here is only for test coverage purpose.
-      const doRequest = axios.get(`${window.app_config.api_url}/codeset`);
+      const doRequest = axios.post(`${window.app_config.api_url}/transaction`, args);
       doRequest.then(
         (res) => {
           dispatch({
-            type: CLIENTS_REQUEST_CODESET_SUCCESS,
-            data: res.data,
+            type: MODALS_REQUEST_CREATE_TRANSACTION_SUCCESS,
+            data: res,
           });
           resolve(res);
         },
         // Use rejectHandler as the second argument so that render errors won't be caught.
         (err) => {
           dispatch({
-            type: CLIENTS_REQUEST_CODESET_FAILURE,
+            type: MODALS_REQUEST_CREATE_TRANSACTION_FAILURE,
             data: { error: err },
           });
           reject(err);
@@ -48,53 +48,43 @@ export function requestCodeset(args = {}) {
 
 // Async action saves request error by default, this method is used to dismiss the error info.
 // If you don't want errors to be saved in Redux store, just ignore this method.
-export function dismissRequestCodesetError() {
+export function dismissRequestCreateTransactionError() {
   return {
-    type: CLIENTS_REQUEST_CODESET_DISMISS_ERROR,
+    type: MODALS_REQUEST_CREATE_TRANSACTION_DISMISS_ERROR,
   };
 }
 
 export function reducer(state, action) {
   switch (action.type) {
-    case CLIENTS_REQUEST_CODESET_BEGIN:
+    case MODALS_REQUEST_CREATE_TRANSACTION_BEGIN:
       // Just after a request is sent
       return {
         ...state,
-        requestCodesetPending: true,
-        requestCodesetError: null,
+        requestCreateTransactionPending: true,
+        requestCreateTransactionError: null,
       };
 
-    case CLIENTS_REQUEST_CODESET_SUCCESS:
+    case MODALS_REQUEST_CREATE_TRANSACTION_SUCCESS:
       // The request is success
       return {
         ...state,
-        requestCodesetPending: false,
-        requestCodesetError: null,
-        ASSISTANCE_REASON: action.data.ASSISTANCE_REASON,
-        DISABILITY: action.data.DISABILITY,
-        ETHNICITY: action.data.ETHNICITY,
-        FAMILY_TYPE: action.data.FAMILY_TYPE,
-        GENDER: action.data.GENDER,
-        HOUSING: action.data.HOUSING,
-        RACE: action.data.RACE,
-        RELTN_TO_HOH: action.data.RELTN_TO_HOH,
-        SSN: action.data.SSN,
-        VETERAN: action.data.VETERAN
+        requestCreateTransactionPending: false,
+        requestCreateTransactionError: null,
       };
 
-    case CLIENTS_REQUEST_CODESET_FAILURE:
+    case MODALS_REQUEST_CREATE_TRANSACTION_FAILURE:
       // The request is failed
       return {
         ...state,
-        requestCodesetPending: false,
-        requestCodesetError: action.data.error,
+        requestCreateTransactionPending: false,
+        requestCreateTransactionError: action.data.error,
       };
 
-    case CLIENTS_REQUEST_CODESET_DISMISS_ERROR:
+    case MODALS_REQUEST_CREATE_TRANSACTION_DISMISS_ERROR:
       // Dismiss the request failure error
       return {
         ...state,
-        requestCodesetError: null,
+        requestCreateTransactionError: null,
       };
 
     default:

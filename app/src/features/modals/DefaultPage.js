@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Modal } from 'reactstrap';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
-import { ClientSearchModal } from './';
+import { ClientSearchModal, AssistanceWizardModal } from './';
 
 export class DefaultPage extends Component {
   static propTypes = {
@@ -34,6 +34,9 @@ export class DefaultPage extends Component {
     switch (this.props.modals.currentModal) {
       case 'ClientSearchModal':
         modal = <ClientSearchModal toggle={this.toggle} />;
+        break;
+      case 'AssistanceWizardModal':
+        modal = <AssistanceWizardModal toggle={this.toggle} />;
         break;
       default:
         break;

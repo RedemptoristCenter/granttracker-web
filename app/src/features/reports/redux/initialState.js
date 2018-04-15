@@ -6,14 +6,6 @@
 
 // NOTE: initialState constant is necessary so that Rekit could auto add initial state when creating async actions.
 const initialState = {
-  open: false,
-  currentModal: null,
-  modalSize: null,
-  grants: [],
-  requestCurrentGrantsPending: false,
-  requestCurrentGrantsError: null,
-  requestCreateTransactionPending: false,
-  requestCreateTransactionError: null
 };
 
 export default initialState;

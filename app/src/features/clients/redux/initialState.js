@@ -8,6 +8,7 @@
 const initialState = {
   searchResults: [],
   clientInfo: null,
+  ASSISTANCE_REASON: [],
   DISABILITY: [],
   ETHNICITY: [],
   FAMILY_TYPE: [],

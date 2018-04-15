@@ -8,12 +8,15 @@ import { Container } from '../../features/app';
 import { AssistanceLog } from '../../features/common';
 import { TabProfile, TabDemographics, TabHousehold, TabIncome } from './';
 import * as actions from './redux/actions';
+import * as modalActions from '../../features/modals/redux/actions';
 import history from '../../common/history';
+import { AssistanceWizardModal } from '../modals/AssistanceWizardModal';
 
 export class Detail extends Component {
   static propTypes = {
     clients: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
+    modalActions: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
   };
 
@@ -23,6 +26,8 @@ export class Detail extends Component {
     this.toggle = this.toggle.bind(this);
     this.createClient = this.createClient.bind(this);
     this.saveClient = this.saveClient.bind(this);
+    this.goToDetailPDF = this.goToDetailPDF.bind(this);
+    this.goToConsentPDF = this.goToConsentPDF.bind(this);
   }
 
   state = {
@@ -84,6 +89,15 @@ export class Detail extends Component {
     }
   }
 
+  goToConsentPDF() {
+    const { clientInfo } = this.props.clients;
+    history.push(``);
+  }
+
+  goToDetailPDF() {
+
+  }
+
   renderClientInfo() {
     const { clientInfo } = this.props.clients;
     const { client_id } = this.props.match.params;
@@ -99,12 +113,10 @@ export class Detail extends Component {
             <span className='clients-detail__back-arrow' onClick={() => { history.push('/clients'); }}><i className='fas fa-arrow-left' /></span>
             &nbsp;&nbsp;&nbsp;{clientInfo.Fname} {clientInfo.Lname}
           </h2>
-          {
-            client_id === 'new' ?
-              <Button size='sm' className='col-3' color='primary' onClick={this.createClient}>Create</Button>
-              :
-              <Button size='sm' className='col-3' color='primary' onClick={this.saveClient}>Save</Button>
-          }
+          <div className='clients-detail__action-icons row m-0 align-items-center justify-content-center'>
+            {/* <div className='clients-detail__icon-link' onClick={this.goToDetailPDF}><i className='fas fa-file-alt' /></div> */}
+            <a href={`/client-pdf/consent?Fname=${clientInfo.Fname}&Lname=${clientInfo.Lname}`} target='_blank' className='clients-detail__icon-link'><i className='fas fa-clipboard-check' /></a>
+          </div>
         </div>
         <hr />
         <div>
@@ -156,19 +168,27 @@ export class Detail extends Component {
               <TabIncome />
             </TabPane>
           </TabContent>
+          <hr />
+          {
+            client_id === 'new' ?
+              <Button size='sm' className='col-3' color='primary' onClick={this.createClient}>Create</Button>
+              :
+              <Button size='sm' className='col-3' color='primary' onClick={this.saveClient}>Save</Button>
+          }
         </div>
       </div>
     );
   }
 
   render() {
+    const { client_id } = this.props.match.params;
     return (
       <Container title='Clients'>
         <div className='clients-detail row justify-content-between align-items-stretch'>
           <div className='col clients-detail__scrollable-area'>
             {this.props.clients.requestClientByIdPending ? 'Loading...' : this.renderClientInfo()}
           </div>
-          <AssistanceLog className='col-3' name='Assistance Log' data={[]} buttonLabel='Provide Assistance' />
+          <AssistanceLog className='col-3' name='Assistance Log' data={[]} buttonLabel={client_id !== 'new' ? 'Provide Assistance' : false} buttonFunction={() => { this.props.modalActions.openModal('AssistanceWizardModal', 'lg'); }} />
         </div>
       </Container>
     );
@@ -179,6 +199,7 @@ export class Detail extends Component {
 function mapStateToProps(state) {
   return {
     clients: state.clients,
+    modals: state.modals
   };
 }
 
@@ -186,6 +207,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({ ...actions }, dispatch),
+    modalActions: bindActionCreators({ ...modalActions }, dispatch)
   };
 }
 
