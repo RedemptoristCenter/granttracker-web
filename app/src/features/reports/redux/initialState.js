@@ -6,6 +6,22 @@
 
 // NOTE: initialState constant is necessary so that Rekit could auto add initial state when creating async actions.
 const initialState = {
+  grantReport: null,
+  grantTrans: [],
+  ASSISTANCE_REASON: [],
+  DISABILITY: [],
+  ETHNICITY: [],
+  FAMILY_TYPE: [],
+  GENDER: [],
+  HOUSING: [],
+  RACE: [],
+  RELTN_TO_HOH: [],
+  SSN: [],
+  VETERAN: [],
+  requestGrantReportPending: false,
+  requestGrantReportError: null,
+  requestCodesetPending: false,
+  requestCodesetError: null,
 };
 
 export default initialState;
