@@ -11,7 +11,9 @@ const initialState = {
   requestSearchPending: false,
   requestSearchError: null,
   requestGrantByIdPending: false,
-  requestGrantByIdError: null
+  requestGrantByIdError: null,
+  getGrantLogPending: false,
+  getGrantLogError: null
 };
 
 export default initialState;

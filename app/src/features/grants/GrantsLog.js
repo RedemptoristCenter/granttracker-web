@@ -12,6 +12,7 @@ export class GrantsLog extends Component {
   render() {
     return (
       <div className='grants-log'>
+        <h2>Grants Log</h2>
         <div className='grants-log__listing'>
           Test
         </div>

@@ -11,12 +11,14 @@ import { reducer as requestSearchReducer } from './requestSearch';
 import { reducer as requestGrantByIdReducer } from './requestGrantById';
 import { reducer as updateLocalGrantInfoReducer } from './updateLocalGrantInfo';
 import { reducer as createLocalDefaultGrantReducer } from './createLocalDefaultGrant';
+import { reducer as getGrantLogReducer } from './getGrantLog';
 
 const reducers = [
   requestSearchReducer,
   requestGrantByIdReducer,
   updateLocalGrantInfoReducer,
   createLocalDefaultGrantReducer,
+  getGrantLogReducer,
 ];
 
 export default function reducer(state = initialState, action) {
