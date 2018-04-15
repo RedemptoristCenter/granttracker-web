@@ -29,7 +29,7 @@ export class Detail extends Component {
     const { grant_id } = this.props.match.params;
 
     if (grant_id === 'new') { this.props.actions.createLocalDefaultGrant(); return true; }
-    this.props.actions.requestClientById({ grant_id });
+    this.props.actions.requestGrantById({ grant_id });
 
     return true;
   }
