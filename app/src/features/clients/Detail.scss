@@ -9,4 +9,10 @@
   &__back-arrow {
     cursor: pointer;
   }
+  &__icon-link {
+    font-size: $h2-font-size;
+    margin: 0 5px;
+    cursor: pointer;
+    color: $gray-800;
+  }
 }

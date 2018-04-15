@@ -17,7 +17,12 @@ export class TabProfile extends Component {
 
     this.handleChangeEvent = this.handleChangeEvent.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
+    this.toggleConsent = this.toggleConsent.bind(this);
   }
+
+  state = {
+    consent: false
+  };
 
   handleChangeEvent(e) {
     const { name, value } = e.target;
@@ -26,6 +31,14 @@ export class TabProfile extends Component {
 
   handleDateChange(date) {
     this.props.actions.updateLocalClientInfo('birth_date', moment(date.target.value).unix());
+  }
+
+  toggleConsent(e) {
+    const { checked } = e.target;
+    console.log('checked', checked);
+    this.setState({
+      consent: !checked
+    });
   }
 
   render() {
@@ -83,6 +96,23 @@ export class TabProfile extends Component {
             <Label for='phone_num'>Phone Number</Label>
             <Input type='text' name='phone_num' id='phone_num' value={clientInfo.phone_num || ''} onChange={this.handleChangeEvent} />
           </FormGroup>
+        </div>
+        <div className='row mt-3 align-items-end'>
+          <div className='col'>
+            <Label for='ssn_cd'>SSN</Label>
+            <Input type='select' name='ssn_cd' id='ssn_cd' value={clientInfo.ssn_cd} onChange={this.handleChangeEvent}>
+              {
+                this.props.clients.SSN.map(ssn => <option key={`gender-option-${ssn.id}`} value={ssn.id}>{ssn.name}</option>)
+              }
+            </Input>
+          </div>
+          <div className='col'>
+            <FormGroup check>
+              <Label for='check-consent'>
+                <Input type='checkbox' name='consent' id='check-consent' onChange={this.toggleConsent} value={this.state.consent} /> Client has consented to provide this information
+              </Label>
+            </FormGroup>
+          </div>
         </div>
       </div>
     );

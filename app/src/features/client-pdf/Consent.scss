@@ -1,0 +1,60 @@
+@import '../../styles/mixins';
+
+.client-pdf-consent {
+  &__pdf {
+    position: absolute;
+    top: 0px;
+    width: 1080px;
+    height: 100%;
+    border-style: outset;
+    overflow: scroll;
+  }
+
+  &__background {
+    position:absolute;left:0px;top:0px;
+  }
+
+  &__agency-name {
+    position: absolute;
+    left: 300px;
+    top: 505px;
+    width: 345px;
+    z-index: 999;
+    font-size: 17px;
+  }
+
+  &__name {
+    position: absolute;
+    left: 140px;
+    top: 1030px;
+    width: 300px;
+    z-index: 999;
+    font-size: 15px;
+  }
+
+  &__client-date {
+    position: absolute;
+    right: 125px;
+    top: 1030px;
+    width: 200px;
+    z-index: 999;
+    font-size: 15px;
+  }
+
+  &__rep-date {
+    position: absolute;
+    right: 125px;
+    top: 1120px;
+    width: 200px;
+    z-index: 999;
+    font-size: 15px;
+  }
+
+  &__actions {
+    position: relative;
+    z-index: 999;
+    @media print {
+      display: none;
+    }
+  }
+}
