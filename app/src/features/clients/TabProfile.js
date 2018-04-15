@@ -68,7 +68,7 @@ export class TabProfile extends Component {
               id='birthDate'
               placeholder='Date of Birth'
               bsSize='sm'
-              value={moment.unix(clientInfo.birth_date).format("YYYY-MM-DD")}
+              value={moment.unix(clientInfo.birth_date).format('YYYY-MM-DD')}
               onChange={this.handleDateChange}
             />
           </FormGroup>

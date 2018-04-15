@@ -71,7 +71,10 @@ export function reducer(state, action) {
         ...state,
         requestClientByIdPending: false,
         requestClientByIdError: null,
-        clientInfo: action.data
+        clientInfo: action.data,
+        income_source_obj: action.data.income_source_obj,
+        non_cash_obj: action.data.non_cash_obj,
+        expenditure_obj: action.data.expenditure_obj,
       };
 
     case CLIENTS_REQUEST_CLIENT_BY_ID_FAILURE:
