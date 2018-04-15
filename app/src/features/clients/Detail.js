@@ -8,12 +8,15 @@ import { Container } from '../../features/app';
 import { AssistanceLog } from '../../features/common';
 import { TabProfile, TabDemographics, TabHousehold, TabIncome } from './';
 import * as actions from './redux/actions';
+import * as modalActions from '../../features/modals/redux/actions';
 import history from '../../common/history';
+import { AssistanceWizardModal } from '../modals/AssistanceWizardModal';
 
 export class Detail extends Component {
   static propTypes = {
     clients: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
+    modalActions: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
   };
 
@@ -162,13 +165,14 @@ export class Detail extends Component {
   }
 
   render() {
+    const { client_id } = this.props.match.params;
     return (
       <Container title='Clients'>
         <div className='clients-detail row justify-content-between align-items-stretch'>
           <div className='col clients-detail__scrollable-area'>
             {this.props.clients.requestClientByIdPending ? 'Loading...' : this.renderClientInfo()}
           </div>
-          <AssistanceLog className='col-3' name='Assistance Log' data={[]} buttonLabel='Provide Assistance' />
+          <AssistanceLog className='col-3' name='Assistance Log' data={[]} buttonLabel={client_id !== 'new' ? 'Provide Assistance' : false} buttonFunction={() => { this.props.modalActions.openModal('AssistanceWizardModal', 'lg'); }} />
         </div>
       </Container>
     );
@@ -179,6 +183,7 @@ export class Detail extends Component {
 function mapStateToProps(state) {
   return {
     clients: state.clients,
+    modals: state.modals
   };
 }
 
@@ -186,6 +191,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({ ...actions }, dispatch),
+    modalActions: bindActionCreators({ ...modalActions }, dispatch)
   };
 }
 

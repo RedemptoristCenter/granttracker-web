@@ -8,7 +8,10 @@
 const initialState = {
   open: false,
   currentModal: null,
-  modalSize: null
+  modalSize: null,
+  grants: [],
+  requestCurrentGrantsPending: false,
+  requestCurrentGrantsError: null
 };
 
 export default initialState;

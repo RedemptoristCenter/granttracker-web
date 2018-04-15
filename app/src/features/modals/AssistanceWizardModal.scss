@@ -1,0 +1,21 @@
+@import '../../styles/mixins';
+
+.modals-assistance-wizard-modal {
+  &__type {
+    cursor: pointer;
+  }
+
+  &__type-icon {
+    font-size: 48px;
+    color: $primary;
+  }
+
+  &__success-icon {
+    font-size: 64px;
+    color: $success;
+  }
+  
+  &__add-icon {
+    cursor: pointer;
+  }
+}
