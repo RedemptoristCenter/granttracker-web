@@ -7,6 +7,7 @@ import clientsReducer from '../features/clients/redux/reducer';
 import grantsReducer from '../features/grants/redux/reducer';
 import modalsReducer from '../features/modals/redux/reducer';
 import loginReducer from '../features/login/redux/reducer';
+import reportsReducer from '../features/reports/redux/reducer';
 
 // NOTE 1: DO NOT CHANGE the 'reducerMap' name and the declaration pattern.
 // This is used for Rekit cmds to register new features, remove features, etc.
@@ -22,6 +23,7 @@ const reducerMap = {
   grants: grantsReducer,
   login: loginReducer,
   modals: modalsReducer,
+  reports: reportsReducer,
 };
 
 export default combineReducers(reducerMap);
