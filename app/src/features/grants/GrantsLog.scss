@@ -8,8 +8,15 @@
   flex-direction: column;
 
   &__listing {
-    height: calc(100% - 75px);
     width: 100%;
-    padding: 16px;
+    padding: 10px;
+    overflow: scroll;
+    overflow-x: hidden;
+  }
+
+  &__card {
+    border: 1px solid gray !important;
+    margin: 5px !important;
   }
 }
+
