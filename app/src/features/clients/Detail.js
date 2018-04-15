@@ -41,6 +41,19 @@ export class Detail extends Component {
     return true;
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.match.params.client_id !== this.props.match.params.client_id) {
+      const { client_id } = nextProps.match.params;
+
+      console.log('ding', client_id);
+      if (client_id === 'new') { this.props.actions.createLocalDefaultClient(); return true; }
+      this.props.actions.requestClientById({ client_id });
+      this.props.actions.requestClientHousehold({ client_id });
+    }
+
+    return true;
+  }
+
   componentWillUnmount() {
     console.log('unmounting');
     this.props.actions.resetLocalClientInfo();
@@ -152,7 +165,7 @@ export class Detail extends Component {
     return (
       <Container title='Clients'>
         <div className='clients-detail row justify-content-between align-items-stretch'>
-          <div className='col'>
+          <div className='col clients-detail__scrollable-area'>
             {this.props.clients.requestClientByIdPending ? 'Loading...' : this.renderClientInfo()}
           </div>
           <AssistanceLog className='col-3' name='Assistance Log' data={[]} buttonLabel='Provide Assistance' />

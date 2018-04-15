@@ -2,6 +2,10 @@
 
 .clients-detail {
   height: 100%;
+  &__scrollable-area {
+    height: 100%;
+    overflow: scroll;
+  }
   &__back-arrow {
     cursor: pointer;
   }

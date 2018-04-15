@@ -7,16 +7,8 @@
 // https://medium.com/@nate_wang/a-new-approach-for-managing-redux-actions-91c26ce8b5da.
 
 import initialState from './initialState';
-import { reducer as requestSearchReducer } from './requestSearch';
-import { reducer as requestGrantByIdReducer } from './requestGrantById';
-import { reducer as updateLocalGrantInfoReducer } from './updateLocalGrantInfo';
-import { reducer as createLocalDefaultGrantReducer } from './createLocalDefaultGrant';
 
 const reducers = [
-  requestSearchReducer,
-  requestGrantByIdReducer,
-  updateLocalGrantInfoReducer,
-  createLocalDefaultGrantReducer,
 ];
 
 export default function reducer(state = initialState, action) {

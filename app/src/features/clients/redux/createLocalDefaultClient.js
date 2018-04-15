@@ -28,7 +28,7 @@ export function reducer(state, action) {
           ethnicity_cd: 39,
           family_type_cd: 14,
           gender_cd: 4,
-          hoh_client_id: 0,
+          hoh_client_id: null,
           house_size: 0,
           housing_cd: 53,
           phone_num: '',

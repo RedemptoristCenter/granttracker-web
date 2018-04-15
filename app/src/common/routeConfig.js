@@ -6,6 +6,7 @@ import appRoute from '../features/app/route';
 import clientsRoute from '../features/clients/route';
 import grantsRoute from '../features/grants/route';
 import modalsRoute from '../features/modals/route';
+import loginRoute from '../features/login/route';
 
 // NOTE: DO NOT CHANGE the 'childRoutes' name and the declaration pattern.
 // This is used for Rekit cmds to register routes config for new features, and remove config when remove features, etc.
@@ -16,6 +17,7 @@ const childRoutes = [
   clientsRoute,
   grantsRoute,
   modalsRoute,
+  loginRoute,
 ];
 
 const routes = [{

@@ -63,7 +63,7 @@ export default class Container extends Component {
             <NavItem>
               <NavLink
                 href='#'
-                onClick={(e) => { e.preventDefault(); history.push('/logout'); }}
+                onClick={(e) => { e.preventDefault(); history.push('/login'); }}
               >
                 <i className='fas fa-sign-out-alt' />
               </NavLink>

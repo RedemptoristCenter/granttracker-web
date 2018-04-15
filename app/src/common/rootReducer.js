@@ -6,6 +6,7 @@ import appReducer from '../features/app/redux/reducer';
 import clientsReducer from '../features/clients/redux/reducer';
 import grantsReducer from '../features/grants/redux/reducer';
 import modalsReducer from '../features/modals/redux/reducer';
+import loginReducer from '../features/login/redux/reducer';
 
 // NOTE 1: DO NOT CHANGE the 'reducerMap' name and the declaration pattern.
 // This is used for Rekit cmds to register new features, remove features, etc.
@@ -19,6 +20,7 @@ const reducerMap = {
   app: appReducer,
   clients: clientsReducer,
   grants: grantsReducer,
+  login: loginReducer,
   modals: modalsReducer,
 };
 

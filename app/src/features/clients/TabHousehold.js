@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import { Label, Input, Button } from 'reactstrap';
+import { Label, Input, Button, Card } from 'reactstrap';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import * as modalActions from '../../features/modals/redux/actions';
 import * as actions from './redux/actions';
+import history from '../../common/history';
 
 export class TabHousehold extends Component {
   static propTypes = {
@@ -36,7 +38,42 @@ export class TabHousehold extends Component {
         <hr className='mt-0 mb-3' />
         {
           household.map(client => (
-            <div key={`household-client-${client.client_id}`}>{client.Fname}</div>
+            <Card key={`household-client-${client.client_id}`} className='mt-3 border-dark'>
+              <div className='row justify-content-start align-items-center'>
+                <div className='col'><strong>Name:</strong> {client.Fname} {client.Mname} {client.Lname}</div>
+                <div className='col'><strong>DOB:</strong> {moment.unix(client.birth_date).format('YYYY-MM-DD')}</div>
+                <div className='col'>
+                  <strong>Rel to HoH:</strong>&nbsp;
+                  {
+                      this.props.clients.RELTN_TO_HOH.length > 0 && client.reltn_to_hoh_cd ?
+                        this.props.clients.RELTN_TO_HOH.find(ssn => ssn.id === client.reltn_to_hoh_cd).name || '?'
+                        :
+                        ''
+                    }
+                </div>
+              </div>
+              <div className='row justify-content-start align-items-center mt-2'>
+                <div className='col'>
+                  <strong>SSN:</strong>&nbsp;
+                  {
+                      this.props.clients.SSN.length > 0 && client.ssn_cd ?
+                        this.props.clients.SSN.find(ssn => ssn.id === client.ssn_cd).name || '?'
+                        :
+                        ''
+                    }
+                </div>
+                <div className='col'>
+                  <strong>Gender:</strong>&nbsp;
+                  { this.props.clients.GENDER.length > 0 ? this.props.clients.GENDER.find(gender => gender.id === client.gender_cd).name || '?' : '' }
+                </div>
+              </div>
+              <hr />
+              <div className='row ml-0 mr-0 mt-2 justify-content-end'>
+                <Button color='primary' outline size='sm' onClick={() => history.push(`/clients/${client.client_id}`)}>Update Client Info</Button>
+                  &nbsp;&nbsp;
+                <Button color='danger' outline size='sm' onClick={() => { this.props.actions.updateLocalHouseholdRemoveClient(client.client_id); }}>Remove from List</Button>
+              </div>
+            </Card>
           ))
         }
       </div>
@@ -45,6 +82,7 @@ export class TabHousehold extends Component {
 
   render() {
     const { clientInfo } = this.props.clients;
+    if (!clientInfo) { return ''; }
     const currentRelationship = this.props.clients.RELTN_TO_HOH.find(rel => rel.id === clientInfo.reltn_to_hoh_cd);
 
     return (
@@ -65,7 +103,17 @@ export class TabHousehold extends Component {
               }
             </Input>
             {
-              clientInfo.reltn_to_hoh_cd !== 17 ? <div className='text-right'>of Foobar McGee</div> : this.renderHouseholdNonsense()
+              clientInfo.reltn_to_hoh_cd !== 17 ?
+                <div className='text-right'>
+                  {
+                    clientInfo.hoh ?
+                      <a href='#' onClick={(e) => { e.preventDefault(); return history.push(`/clients/${clientInfo.hoh.client_id}`); }}>of {clientInfo.hoh.Fname} {clientInfo.hoh.Lname}</a>
+                      :
+                      ''
+                  }
+                </div>
+                :
+                this.renderHouseholdNonsense()
             }
           </div>
         </div>

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { FormGroup, Label, Input } from 'reactstrap';
-import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
@@ -31,6 +30,7 @@ export class TabProfile extends Component {
 
   render() {
     const { clientInfo } = this.props.clients;
+    if (!clientInfo) { return ''; }
     return (
       <div className='clients-tab-profile mt-4'>
         <div className='row'>
