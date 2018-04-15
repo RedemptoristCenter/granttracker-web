@@ -1,9 +1,16 @@
 @import '../../styles/mixins';
 
 .grants-detail {
+  height: 100%;
 
   &__form-wrapper {
     display: flex;
     justify-content: space-between;
+    height: 100%;
   }  
+
+  &__max-height {
+    height: 100%;
+    overflow: scroll;
+  }
 }

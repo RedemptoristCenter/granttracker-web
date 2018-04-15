@@ -59,7 +59,7 @@ export class Detail extends Component {
 
     return ([
       <div key='GrantsForm' className='grants-detail__form-wrapper'>
-        <Col xs='9'>
+        <Col className='grants-detail__max-height' xs='9'>
           <div className='row justify-content-between align-items-center m-0'>
             <h2>
               <span className='clients-detail__back-arrow' onClick={() => { history.push('/grants'); }}><i className='fas fa-arrow-left' /></span>
