@@ -74,7 +74,6 @@ module.exports = (type) => { // eslint-disable-line
 
     plugins: _.compact([
       isDev && new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoEmitOnErrorsPlugin(),
       isDist && new LodashModuleReplacementPlugin(),
       isDist && new webpack.optimize.UglifyJsPlugin(),
       isDist && new webpack.optimize.AggressiveMergingPlugin(),
