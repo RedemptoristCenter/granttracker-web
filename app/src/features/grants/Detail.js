@@ -98,10 +98,11 @@ export class Detail extends Component {
             />
           </FormGroup>
           <FormGroup className='col'>
+            <Label for='initial_amount'>Initial Amount</Label>
             <MaskedInput
               mask={numberMask}
               className="form-control"
-              placeholder='Initial Amount'
+              placeholder=''
               guide={false}
               id='initial_amount'
               name='initial_amount'
@@ -110,10 +111,11 @@ export class Detail extends Component {
             />
           </FormGroup>
           <FormGroup className='col'>
+            <Label for='remaining_amount'>Remaining Amount</Label>
             <MaskedInput
               mask={numberMask}
               className="form-control"
-              placeholder='Remaining Amount'
+              placeholder=''
               guide={false}
               id='remaining_amount'
               name='remaining_amount'
