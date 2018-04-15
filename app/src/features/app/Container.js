@@ -57,6 +57,15 @@ export default class Container extends Component {
                   <i className='fas fa-hand-holding-usd' />
                 </NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink
+                  href='#'
+                  onClick={(e) => { e.preventDefault(); history.push('/reports'); }}
+                  className={this.checkActive('/reports') ? 'active' : ''}
+                >
+                  <i className='fas fa-chart-pie' />
+                </NavLink>
+              </NavItem>
             </Nav>
           </div>
           <Nav vertical className='nav-bar__icons'>
