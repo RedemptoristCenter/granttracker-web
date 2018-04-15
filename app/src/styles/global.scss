@@ -6,4 +6,13 @@
 // Here you put all global css rules.
 
 html, body{
+  @media print {
+    .modal-open {
+      overflow: visible;
+    }
+
+    .modal.fade.show {
+      position: relative;
+    }
+  }
 }
