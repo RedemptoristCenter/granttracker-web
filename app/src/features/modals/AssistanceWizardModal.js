@@ -24,6 +24,7 @@ export class AssistanceWizardModal extends Component {
     this.addToFundArray = this.addToFundArray.bind(this);
     this.removeFromFundArray = this.removeFromFundArray.bind(this);
     this.updateFundArray = this.updateFundArray.bind(this);
+    this.submitAddAssistance = this.submitAddAssistance.bind(this);
   }
 
   state = {
@@ -118,7 +119,7 @@ export class AssistanceWizardModal extends Component {
     const { assistance_transaction_obj } = this.state;
     const newObject = Object.assign(assistance_transaction_obj);
     const index = assistance_transaction_obj.findIndex(object => object.id === id);
-    newObject[index][key] = value;
+    newObject[index][key] = (key === 'amount') ? parseFloat(value) : value;
 
     console.log('fing', newObject);
 
@@ -131,12 +132,34 @@ export class AssistanceWizardModal extends Component {
     const { assistance_funds } = this.state;
     const newObject = Object.assign(assistance_funds);
     const index = assistance_funds.findIndex(object => object.id === id);
-    newObject[index][key] = value;
+    newObject[index][key] = (key === 'amount') ? parseFloat(value) : parseInt(value);
 
     console.log('fing2', newObject);
 
     this.setState({
       assistance_funds: newObject
+    });
+  }
+
+  submitAddAssistance() {
+    const { clientInfo } = this.props.clients;
+    const transType = this.state.assistance_cd ? 'Financial' : 'Non Financial';
+
+    const body = {
+      client_id: clientInfo.client_id,
+      transaction_type: transType,
+      reason_cd: parseInt(this.state.assistance_cd),
+      grants: this.state.assistance_funds,
+      assistance_transaction_obj: this.state.assistance_transaction_obj,
+      trans_notes: this.state.trans_notes
+    };
+
+    console.log('body', body);
+
+    this.props.actions.requestCreateTransaction(body).then(() => {
+      this.setState({
+        position: 'success'
+      });
     });
   }
 
@@ -174,7 +197,7 @@ export class AssistanceWizardModal extends Component {
               <Label for='trans_notes'>Clothing, food, etc...</Label>
               <Input type='textarea' name='trans_notes' id='trans_notes' value={this.state.trans_notes} onChange={this.updateState} />
             </FormGroup>
-            <Button color='primary' block>Add Assistance</Button>
+            <Button color='primary' block onClick={this.submitAddAssistance}>Add Assistance</Button>
           </div>
         </div>
       </div>
@@ -280,7 +303,7 @@ export class AssistanceWizardModal extends Component {
             }
             <hr />
 
-            <Button color='primary' block>Add Assistance</Button>
+            <Button color='primary' block onClick={this.submitAddAssistance}>Add Assistance</Button>
           </div>
         </div>
       </div>

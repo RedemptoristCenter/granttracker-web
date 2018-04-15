@@ -45,26 +45,31 @@ export class TabHousehold extends Component {
                 <div className='col'>
                   <strong>Rel to HoH:</strong>&nbsp;
                   {
-                      this.props.clients.RELTN_TO_HOH.length > 0 && client.reltn_to_hoh_cd ?
-                        this.props.clients.RELTN_TO_HOH.find(ssn => ssn.id === client.reltn_to_hoh_cd).name || '?'
-                        :
-                        ''
-                    }
+                    this.props.clients.RELTN_TO_HOH.length > 0 && client.reltn_to_hoh_cd ?
+                      this.props.clients.RELTN_TO_HOH.find(ssn => ssn.id === client.reltn_to_hoh_cd).name || '?'
+                      :
+                      ''
+                  }
                 </div>
               </div>
               <div className='row justify-content-start align-items-center mt-2'>
                 <div className='col'>
                   <strong>SSN:</strong>&nbsp;
                   {
-                      this.props.clients.SSN.length > 0 && client.ssn_cd ?
-                        this.props.clients.SSN.find(ssn => ssn.id === client.ssn_cd).name || '?'
-                        :
-                        ''
-                    }
+                    this.props.clients.SSN.length > 0 && client.ssn_cd ?
+                      this.props.clients.SSN.find(ssn => ssn.id === client.ssn_cd).name || '?'
+                      :
+                      ''
+                  }
                 </div>
                 <div className='col'>
                   <strong>Gender:</strong>&nbsp;
-                  { this.props.clients.GENDER.length > 0 ? this.props.clients.GENDER.find(gender => gender.id === client.gender_cd).name || '?' : '' }
+                  {
+                    this.props.clients.GENDER.length > 0 && client.gender_cd ?
+                      this.props.clients.GENDER.find(gender => gender.id === client.gender_cd).name || '?'
+                      :
+                      ''
+                  }
                 </div>
               </div>
               <hr />
