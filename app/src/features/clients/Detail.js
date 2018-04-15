@@ -65,13 +65,23 @@ export class Detail extends Component {
   }
 
   createClient() {
-    const { clientInfo } = this.props.clients;
-    this.props.actions.requestNewClient(clientInfo);
+    const { clientInfo, income_source_obj, non_cash_obj, expenditure_obj } = this.props.clients;
+    this.props.actions.requestNewClient({
+      ...clientInfo,
+      income_source_obj,
+      non_cash_obj,
+      expenditure_obj
+    });
   }
 
   saveClient() {
-    const { clientInfo, household } = this.props.clients;
-    this.props.actions.requestUpdateClientById(clientInfo);
+    const { clientInfo, household, income_source_obj, non_cash_obj, expenditure_obj } = this.props.clients;
+    this.props.actions.requestUpdateClientById({
+      ...clientInfo,
+      income_source_obj,
+      non_cash_obj,
+      expenditure_obj
+    });
 
     const clientIds = [];
     household.forEach((client) => {
@@ -150,7 +160,7 @@ export class Detail extends Component {
                 className={classnames({ active: this.state.activeTab === '4' })}
                 onClick={() => { this.toggle('4'); }}
               >
-                Income (?)
+                Income
               </NavLink>
             </NavItem>
           </Nav>

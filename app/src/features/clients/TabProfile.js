@@ -64,7 +64,7 @@ export class TabProfile extends Component {
             <FormValidator value={clientInfo.Mname || ''}>
               <Label for='Mname'>M. Initial</Label>
               <Input type='text' name='Mname' id='Mname' value={clientInfo.Mname || ''} onChange={this.handleChangeEvent} />
-            </FormValidator>  
+            </FormValidator>
           </FormGroup>
           <FormGroup className='col'>
             <FormValidator value={moment.unix(clientInfo.birth_date).format("YYYY-MM-DD")}>
@@ -87,7 +87,7 @@ export class TabProfile extends Component {
             <FormValidator value={clientInfo.address || ''}>
               <Label for='address'>Street Address</Label>
               <Input type='text' name='address' id='address' value={clientInfo.address || ''} onChange={this.handleChangeEvent} />
-            </FormValidator>  
+            </FormValidator>
           </FormGroup>
           <FormGroup className='col'>
             <FormValidator value={clientInfo.city || ''}>

@@ -32,6 +32,7 @@
     "import/no-extraneous-dependencies": 0,
     "import/imports-first": 0,
     "jsx-quotes": ["error", "prefer-single"],
-    "no-trailing-spaces": 0
+    "no-trailing-spaces": 0,
+    "camelcase": 0
   }
 }
