@@ -302,7 +302,6 @@ export class AssistanceWizardModal extends Component {
               ))
             }
             <hr />
-
             <Button color='primary' block onClick={this.submitAddAssistance}>Add Assistance</Button>
           </div>
         </div>
@@ -349,6 +348,7 @@ export class AssistanceWizardModal extends Component {
           {this.renderAllTheThings()}
         </ModalBody>
         <ModalFooter>
+          <Button color='primary' outline onClick={() => { window.print(); }}>Print</Button>
           <Button color='warning' outline onClick={this.props.toggle}>Cancel</Button>
         </ModalFooter>
       </div>
