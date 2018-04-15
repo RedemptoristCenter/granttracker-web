@@ -17,7 +17,10 @@ export function reducer(state, action) {
     case CLIENTS_RESET_LOCAL_CLIENT_INFO:
       return {
         ...state,
-        clientInfo: null
+        clientInfo: null,
+        income_source_obj: [],
+        non_cash_obj: [],
+        expenditure_obj: [],
       };
 
     default:
