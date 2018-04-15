@@ -1,0 +1,13 @@
+@import '../../styles/mixins';
+
+.common-form-validator {
+
+
+ &__error {
+    background-color: #f44842;
+    height: auto;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+ }
+}

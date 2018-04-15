@@ -13,7 +13,11 @@ const initialState = {
   requestGrantByIdPending: false,
   requestGrantByIdError: null,
   getGrantLogPending: false,
-  getGrantLogError: null
+  getGrantLogError: null,
+  createGrantPending: false,
+  createGrantError: null,
+  updateGrantPending: false,
+  updateGrantError: null
 };
 
 export default initialState;
