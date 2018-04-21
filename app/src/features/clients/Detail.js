@@ -70,9 +70,13 @@ export class Detail extends Component {
       income_source_obj,
       non_cash_obj,
       expenditure_obj
+    }).then((res) => {
+      console.log(res.data);
+      const clientID = res.data.client_id;
+      history.push(`/clients/${clientID}`);
     });
 
-    this.setState({ updateSuccess: true });
+    return true;
   }
 
   saveClient() {

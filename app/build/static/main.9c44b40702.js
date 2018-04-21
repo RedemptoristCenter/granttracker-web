@@ -52716,9 +52716,13 @@ var Detail = exports.Detail = function (_Component) {
         income_source_obj: income_source_obj,
         non_cash_obj: non_cash_obj,
         expenditure_obj: expenditure_obj
-      }));
+      })).then(function (res) {
+        console.log(res.data);
+        var clientID = res.data.client_id;
+        _history2.default.push('/clients/' + clientID);
+      });
 
-      this.setState({ updateSuccess: true });
+      return true;
     }
   }, {
     key: 'saveClient',
