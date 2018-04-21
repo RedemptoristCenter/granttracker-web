@@ -57293,6 +57293,8 @@ var Consent = exports.Consent = function (_Component) {
       this.setState({
         name: params.Fname + ' ' + params.Lname
       });
+
+      window.print();
     }
   }, {
     key: 'render',
