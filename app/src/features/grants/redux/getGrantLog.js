@@ -33,6 +33,7 @@ export function getGrantLog(args = {}) {
         },
         // Use rejectHandler as the second argument so that render errors won't be caught.
         (err) => {
+          if (err.response.status === 401) { window.location.href = '/login'; }
           dispatch({
             type: GRANTS_GET_GRANT_LOG_FAILURE,
             data: { error: err },

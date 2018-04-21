@@ -33,6 +33,7 @@ export function requestUpdateClientHousehold(args = {}) {
         },
         // Use rejectHandler as the second argument so that render errors won't be caught.
         (err) => {
+          if (err.response.status === 401) { window.location.href = '/login'; }
           dispatch({
             type: CLIENTS_REQUEST_UPDATE_CLIENT_HOUSEHOLD_FAILURE,
             data: { error: err },

@@ -33,6 +33,7 @@ export function requestClientById(args = {}) {
         },
         // Use rejectHandler as the second argument so that render errors won't be caught.
         (err) => {
+          if (err.response.status === 401) { window.location.href = '/login'; }
           dispatch({
             type: CLIENTS_REQUEST_CLIENT_BY_ID_FAILURE,
             data: { error: err },

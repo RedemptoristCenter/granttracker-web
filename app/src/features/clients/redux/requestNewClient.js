@@ -33,6 +33,7 @@ export function requestNewClient(args = {}) {
         },
         // Use rejectHandler as the second argument so that render errors won't be caught.
         (err) => {
+          if (err.response.status === 401) { window.location.href = '/login'; }
           dispatch({
             type: CLIENTS_REQUEST_NEW_CLIENT_FAILURE,
             data: { error: err },
