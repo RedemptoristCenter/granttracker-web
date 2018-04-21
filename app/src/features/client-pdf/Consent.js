@@ -43,7 +43,7 @@ export class Consent extends Component {
           <div className='client-pdf-consent__client-date'>{today}</div>
           <div className='client-pdf-consent__rep-date'>{today}</div>
           <div className='client-pdf-consent__background'>
-            <img src={require('../../images/consent-bg.jpg')} width='1080' height='100%' />
+            <img src='https://i.imgur.com/Y5hZF5k.jpg' width='1080' height='100%' />
           </div>
         </div>
       </div>
