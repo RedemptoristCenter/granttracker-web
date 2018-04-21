@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Alert } from 'reactstrap';
 import * as actions from './redux/actions';
 
 export class ErrorAlert extends Component {
@@ -14,7 +15,7 @@ export class ErrorAlert extends Component {
     return (
       <div className="common-error-alert">
         <Alert color="danger">
-          Something went wrong. Please try again. If the issue continues, please refresh your browser.
+          { this.props.custom ? this.props.custom : 'Something went wrong. Please try again. If the issue continues, please refresh your browser.' }
         </Alert>
       </div>
     );
