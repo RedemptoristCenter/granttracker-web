@@ -124,7 +124,7 @@ export class Detail extends Component {
             &nbsp;&nbsp;&nbsp;{clientInfo.Fname} {clientInfo.Lname}
           </h2>
           <div className='clients-detail__action-icons row m-0 align-items-center justify-content-center'>
-            {/* <div className='clients-detail__icon-link' onClick={this.goToDetailPDF}><i className='fas fa-file-alt' /></div> */}
+            <div className='clients-detail__icon-link' onClick={() => { window.print(); }}><i className='fas fa-file-alt' /></div>
             <a href={`/client-pdf/consent?Fname=${clientInfo.Fname}&Lname=${clientInfo.Lname}`} target='_blank' className='clients-detail__icon-link'><i className='fas fa-clipboard-check' /></a>
           </div>
         </div>

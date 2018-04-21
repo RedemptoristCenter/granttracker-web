@@ -14,5 +14,13 @@ html, body{
     .modal.fade.show {
       position: relative;
     }
+
+    .nav-tabs {
+      display: none;
+    }
+
+    .tab-content > .tab-pane {
+      display: block;
+    }
   }
 }
