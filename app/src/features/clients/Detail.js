@@ -40,6 +40,7 @@ export class Detail extends Component {
     if (client_id === 'new') { this.props.actions.createLocalDefaultClient(); return true; }
     this.props.actions.requestClientById({ client_id });
     this.props.actions.requestClientHousehold({ client_id });
+    this.props.actions.requestClientRecords({ client_id });
 
     console.log('client_id', client_id);
     return true;
@@ -53,6 +54,7 @@ export class Detail extends Component {
       if (client_id === 'new') { this.props.actions.createLocalDefaultClient(); return true; }
       this.props.actions.requestClientById({ client_id });
       this.props.actions.requestClientHousehold({ client_id });
+      this.props.actions.requestClientRecords({ client_id });
     }
 
     return true;
@@ -109,8 +111,6 @@ export class Detail extends Component {
   renderClientInfo() {
     const { clientInfo } = this.props.clients;
     const { client_id } = this.props.match.params;
-
-    console.log('wtf', clientInfo);
 
     if (!clientInfo) { return ''; }
 
@@ -199,7 +199,7 @@ export class Detail extends Component {
           <div className='col clients-detail__scrollable-area'>
             {this.props.clients.requestClientByIdPending ? 'Loading...' : this.renderClientInfo()}
           </div>
-          <AssistanceLog className='col-3' name='Assistance Log' data={[]} buttonLabel={client_id !== 'new' ? 'Provide Assistance' : false} buttonFunction={() => { this.props.modalActions.openModal('AssistanceWizardModal', 'lg'); }} />
+          <AssistanceLog className='col-3' name='Assistance Log' data={this.props.clients.records} buttonLabel={client_id !== 'new' ? 'Provide Assistance' : false} buttonFunction={() => { this.props.modalActions.openModal('AssistanceWizardModal', 'lg'); }} />
         </div>
       </Container>
     );
