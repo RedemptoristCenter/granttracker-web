@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
-import { Nav, NavItem, NavLink, TabContent, TabPane, Button } from 'reactstrap';
+import { Nav, NavItem, NavLink, TabContent, TabPane, Button, Alert } from 'reactstrap';
 import { Container } from '../../features/app';
 import { AssistanceLog } from '../../features/common';
 import { TabProfile, TabDemographics, TabHousehold, TabIncome } from './';
@@ -26,12 +26,11 @@ export class Detail extends Component {
     this.toggle = this.toggle.bind(this);
     this.createClient = this.createClient.bind(this);
     this.saveClient = this.saveClient.bind(this);
-    this.goToDetailPDF = this.goToDetailPDF.bind(this);
-    this.goToConsentPDF = this.goToConsentPDF.bind(this);
   }
 
   state = {
-    activeTab: '1'
+    activeTab: '1',
+    updateSuccess: false
   };
 
   componentDidMount() {
@@ -72,6 +71,8 @@ export class Detail extends Component {
       non_cash_obj,
       expenditure_obj
     });
+
+    this.setState({ updateSuccess: true });
   }
 
   saveClient() {
@@ -89,6 +90,8 @@ export class Detail extends Component {
     });
 
     this.props.actions.requestUpdateClientHousehold({ client_id: clientInfo.client_id, householdMembers: clientIds });
+
+    this.setState({ updateSuccess: true });
   }
 
   toggle(tab) {
@@ -97,15 +100,6 @@ export class Detail extends Component {
         activeTab: tab
       });
     }
-  }
-
-  goToConsentPDF() {
-    const { clientInfo } = this.props.clients;
-    history.push(``);
-  }
-
-  goToDetailPDF() {
-
   }
 
   renderClientInfo() {
@@ -118,6 +112,9 @@ export class Detail extends Component {
 
     return (
       <div>
+        {
+          this.state.updateSuccess ? <Alert color='success'>Successfully updated client.</Alert> : ''
+        }
         <div className='row justify-content-between align-items-center m-0'>
           <h2>
             <span className='clients-detail__back-arrow' onClick={() => { history.push('/clients'); }}><i className='fas fa-arrow-left' /></span>
