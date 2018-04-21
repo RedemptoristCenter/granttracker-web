@@ -19,6 +19,7 @@ import { reducer as updateLocalHouseholdAddClientReducer } from './updateLocalHo
 import { reducer as requestClientHouseholdReducer } from './requestClientHousehold';
 import { reducer as updateLocalHouseholdRemoveClientReducer } from './updateLocalHouseholdRemoveClient';
 import { reducer as requestUpdateClientHouseholdReducer } from './requestUpdateClientHousehold';
+import { reducer as requestClientRecordsReducer } from './requestClientRecords';
 
 const reducers = [
   requestSearchReducer,
@@ -33,6 +34,7 @@ const reducers = [
   requestClientHouseholdReducer,
   updateLocalHouseholdRemoveClientReducer,
   requestUpdateClientHouseholdReducer,
+  requestClientRecordsReducer,
 ];
 
 export default function reducer(state = initialState, action) {

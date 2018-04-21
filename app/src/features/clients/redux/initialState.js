@@ -22,6 +22,7 @@ const initialState = {
   income_source_obj: [],
   non_cash_obj: [],
   expenditure_obj: [],
+  records: [],
   requestSearchPending: false,
   requestSearchError: null,
   requestClientByIdPending: false,
@@ -36,6 +37,8 @@ const initialState = {
   requestClientHouseholdError: null,
   requestUpdateClientHouseholdPending: false,
   requestUpdateClientHouseholdError: null,
+  requestClientRecordsPending: false,
+  requestClientRecordsError: null,
 };
 
 export default initialState;

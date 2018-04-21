@@ -10,3 +10,4 @@ export { updateLocalHouseholdAddClient } from './updateLocalHouseholdAddClient';
 export { requestClientHousehold, dismissRequestClientHouseholdError } from './requestClientHousehold';
 export { updateLocalHouseholdRemoveClient } from './updateLocalHouseholdRemoveClient';
 export { requestUpdateClientHousehold, dismissRequestUpdateClientHouseholdError } from './requestUpdateClientHousehold';
+export { requestClientRecords, dismissRequestClientRecordsError } from './requestClientRecords';
