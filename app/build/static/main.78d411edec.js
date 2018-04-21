@@ -55847,8 +55847,10 @@ var Detail = exports.Detail = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Detail.__proto__ || Object.getPrototypeOf(Detail)).call(this, props));
 
     _this.state = {
-      hasError: false
+      hasError: false,
+      updateSuccess: false
     };
+
 
     _this.handleStartDateChange = _this.handleStartDateChange.bind(_this);
     _this.handleEndDateChange = _this.handleEndDateChange.bind(_this);
@@ -55873,7 +55875,6 @@ var Detail = exports.Detail = function (_Component) {
   }, {
     key: 'toggleError',
     value: function toggleError() {
-      console.log("toggled error!");
       this.setState({
         hasError: true
       });
@@ -55919,6 +55920,11 @@ var Detail = exports.Detail = function (_Component) {
         _react2.default.createElement(
           _reactstrap.Col,
           { className: 'grants-detail__max-height', xs: '9' },
+          this.state.updateSuccess ? _react2.default.createElement(
+            _reactstrap.Alert,
+            { color: 'success' },
+            'Successfully updated client.'
+          ) : '',
           _react2.default.createElement(
             'div',
             { className: 'row justify-content-between align-items-center m-0' },
@@ -55966,7 +55972,7 @@ var Detail = exports.Detail = function (_Component) {
               { className: 'col' },
               _react2.default.createElement(
                 _FormValidator2.default,
-                { errorCallback: this.toggleError, value: _moment2.default.unix(grantInfo.start_dt_tm).format("YYYY-MM-DD") },
+                { errorCallback: this.toggleError, value: _moment2.default.unix(grantInfo.start_dt_tm).format('YYYY-MM-DD') },
                 _react2.default.createElement(
                   _reactstrap.Label,
                   { 'for': 'start_dt_tm' },
@@ -55979,7 +55985,7 @@ var Detail = exports.Detail = function (_Component) {
                   id: 'start_dt_tm',
                   placeholder: 'Grant Start Date',
                   bsSize: 'sm',
-                  value: _moment2.default.unix(grantInfo.start_dt_tm).format("YYYY-MM-DD"),
+                  value: _moment2.default.unix(grantInfo.start_dt_tm).format('YYYY-MM-DD'),
                   onChange: this.handleStartDateChange
                 })
               )
@@ -55989,7 +55995,7 @@ var Detail = exports.Detail = function (_Component) {
               { className: 'col' },
               _react2.default.createElement(
                 _FormValidator2.default,
-                { errorCallback: this.toggleError, value: _moment2.default.unix(grantInfo.end_dt_tm).format("YYYY-MM-DD") },
+                { errorCallback: this.toggleError, value: _moment2.default.unix(grantInfo.end_dt_tm).format('YYYY-MM-DD') },
                 _react2.default.createElement(
                   _reactstrap.Label,
                   { 'for': 'end_dt_tm' },
@@ -56002,7 +56008,7 @@ var Detail = exports.Detail = function (_Component) {
                   id: 'end_dt_tm',
                   placeholder: 'Grant End Date',
                   bsSize: 'sm',
-                  value: _moment2.default.unix(grantInfo.end_dt_tm).format("YYYY-MM-DD"),
+                  value: _moment2.default.unix(grantInfo.end_dt_tm).format('YYYY-MM-DD'),
                   onChange: this.handleEndDateChange
                 })
               )
@@ -56054,8 +56060,7 @@ var Detail = exports.Detail = function (_Component) {
               )
             )
           )
-        ),
-        _react2.default.createElement(_.GrantsLog, { key: 'grantsLog', grantInfo: grantInfo })
+        )
       )];
     }
   }, {
