@@ -11,6 +11,24 @@ export class Login extends Component {
     actions: PropTypes.object.isRequired,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      user_name: '',
+      user_pass: '',
+    }
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(evt) {
+    this.setState({
+      [evt.target.name]: evt.target.value
+    });
+    console.log(this.state);
+  }
+
   render() {
     return (
       <div className='login-login'>
@@ -18,16 +36,16 @@ export class Login extends Component {
           <Form>
             <FormGroup row>
               <Col sm={12}>
-                <Input type='email' name='email' id='email' placeholder='Email' bsSize='lg' />
+                <Input type='text' name='user_name' id='user_name' placeholder='Username' bsSize='lg' onChange={this.handleChange} />
               </Col>
             </FormGroup>
             <FormGroup row>
               <Col sm={12}>
-                <Input type='password' name='password' id='password' placeholder='Password' bsSize='lg' />
+                <Input type='password' name='user_pass' id='user_pass' placeholder='Password' bsSize='lg' onChange={this.handleChange} />
               </Col>
             </FormGroup>
           </Form>
-          <Button onClick={()=>{alert('insert log in function here')}} className='login-login__signIn__button' color='side-nav'>Sign In</Button>
+          <Button className='login-login__signIn__button' color='side-nav' onClick={() => { this.props.actions.login({ user_name: this.state.user_name, user_pass: this.state.user_pass }); }}>Sign In</Button>
         </div>
       </div>
     );
