@@ -52653,15 +52653,14 @@ var Detail = exports.Detail = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Detail.__proto__ || Object.getPrototypeOf(Detail)).call(this, props));
 
     _this.state = {
-      activeTab: '1'
+      activeTab: '1',
+      updateSuccess: false
     };
 
 
     _this.toggle = _this.toggle.bind(_this);
     _this.createClient = _this.createClient.bind(_this);
     _this.saveClient = _this.saveClient.bind(_this);
-    _this.goToDetailPDF = _this.goToDetailPDF.bind(_this);
-    _this.goToConsentPDF = _this.goToConsentPDF.bind(_this);
     return _this;
   }
 
@@ -52718,6 +52717,8 @@ var Detail = exports.Detail = function (_Component) {
         non_cash_obj: non_cash_obj,
         expenditure_obj: expenditure_obj
       }));
+
+      this.setState({ updateSuccess: true });
     }
   }, {
     key: 'saveClient',
@@ -52741,6 +52742,8 @@ var Detail = exports.Detail = function (_Component) {
       });
 
       this.props.actions.requestUpdateClientHousehold({ client_id: clientInfo.client_id, householdMembers: clientIds });
+
+      this.setState({ updateSuccess: true });
     }
   }, {
     key: 'toggle',
@@ -52751,16 +52754,6 @@ var Detail = exports.Detail = function (_Component) {
         });
       }
     }
-  }, {
-    key: 'goToConsentPDF',
-    value: function goToConsentPDF() {
-      var clientInfo = this.props.clients.clientInfo;
-
-      _history2.default.push('');
-    }
-  }, {
-    key: 'goToDetailPDF',
-    value: function goToDetailPDF() {}
   }, {
     key: 'renderClientInfo',
     value: function renderClientInfo() {
@@ -52779,6 +52772,11 @@ var Detail = exports.Detail = function (_Component) {
       return _react2.default.createElement(
         'div',
         null,
+        this.state.updateSuccess ? _react2.default.createElement(
+          _reactstrap.Alert,
+          { color: 'success' },
+          'Successfully updated client.'
+        ) : '',
         _react2.default.createElement(
           'div',
           { className: 'row justify-content-between align-items-center m-0' },
