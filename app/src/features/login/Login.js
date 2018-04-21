@@ -70,7 +70,6 @@ export class Login extends Component {
                 this.props.actions
                   .login({ user_name: this.state.user_name, user_pass: this.state.user_pass })
                   .then(() => {
-                    console.log(this)
                     !this.props.actions.loginError ? history.push('/grants') : '';
                   });
               }
