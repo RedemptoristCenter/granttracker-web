@@ -22,7 +22,7 @@ export function logout(args = {}) {
       // doRequest is a placeholder Promise. You should replace it with your own logic.
       // See the real-word example at:  https://github.com/supnate/rekit/blob/master/src/features/home/redux/fetchRedditReactjsList.js
       // args.error here is only for test coverage purpose.
-      const doRequest = axios.post(`${window.app_config.api_url}/logout`);
+      const doRequest = axios.get(`${window.app_config.api_url}/logout`);
       doRequest.then(
         (res) => {
           dispatch({
