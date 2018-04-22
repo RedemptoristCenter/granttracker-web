@@ -33,7 +33,7 @@ export function requestSearch(args = {}) {
         },
         // Use rejectHandler as the second argument so that render errors won't be caught.
         (err) => {
-          if (err.response.status === 401) { console.error(err); }
+          if (err.response.status === 401) { window.location.href = '/login'; }
           dispatch({
             type: GRANTS_REQUEST_SEARCH_FAILURE,
             data: { error: err },
