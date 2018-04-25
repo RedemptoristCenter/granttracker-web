@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
 import { Nav, NavItem, NavLink, Col, Card, Button } from 'reactstrap';
 import history from '../../common/history';
+import * as actions from './redux/actions';
+
 
 import { DefaultPage as ModalWrapper } from '../../features/modals';
 
-export default class Container extends Component {
+export class Container extends Component {
   static propTypes = {
     children: PropTypes.any,
     title: PropTypes.string.isRequired,
     createButtonLabel: PropTypes.string,
-    createButtonFunction: PropTypes.func
+    createButtonFunction: PropTypes.func,
+    app: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired,
   };
 
   checkActive(navLink) {
@@ -72,7 +78,7 @@ export default class Container extends Component {
             <NavItem>
               <NavLink
                 href='#'
-                onClick={(e) => { e.preventDefault(); history.push('/login'); }}
+                onClick={(e) => { e.preventDefault(); this.props.actions.logout(); history.push('/login'); }}
               >
                 <i className='fas fa-sign-out-alt' />
               </NavLink>
@@ -95,3 +101,22 @@ export default class Container extends Component {
     ];
   }
 }
+
+/* istanbul ignore next */
+function mapStateToProps(state) {
+  return {
+    app: state.app,
+  };
+}
+
+/* istanbul ignore next */
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({ ...actions }, dispatch)
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Container);

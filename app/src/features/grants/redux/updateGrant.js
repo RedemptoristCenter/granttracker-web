@@ -23,7 +23,7 @@ export function updateGrant(args = {}) {
       // See the real-word example at:  https://github.com/supnate/rekit/blob/master/src/features/home/redux/fetchRedditReactjsList.js
       // args.error here is only for test coverage purpose.
 
-      const doRequest = axios.post(`${window.app_config.api_url}/grant/update/${args.grantInfo.grant_id}`, args.grantInfo);
+      const doRequest = axios.post(`${window.app_config.api_url}/grant/update/${args.grantInfo.grant_id}`, args.grantInfo, { withCredentials: true });
       doRequest.then(
         (res) => {
           dispatch({
@@ -34,6 +34,7 @@ export function updateGrant(args = {}) {
         },
         // Use rejectHandler as the second argument so that render errors won't be caught.
         (err) => {
+          if (err.response.status === 401) { window.location.href = '/login'; }
           dispatch({
             type: GRANTS_UPDATE_GRANT_FAILURE,
             data: { error: err },

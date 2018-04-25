@@ -2,22 +2,26 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Alert } from 'reactstrap';
+import history from '../../common/history';
+import { NavLink, NavItem } from 'reactstrap';
 import * as actions from './redux/actions';
 
-export class ErrorAlert extends Component {
+export class LogOutButton extends Component {
   static propTypes = {
-    common: PropTypes.object.isRequired,
+    app: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
   };
 
   render() {
     return (
-      <div className="common-error-alert">
-        <Alert color="danger">
-          { this.props.custom ? this.props.custom : 'Something went wrong. Please try again. If the issue continues, please refresh your browser.' }
-        </Alert>
-      </div>
+      <NavItem>
+        <NavLink
+          href='#'
+          onClick={(e) => { e.preventDefault(); this.props.actions.logout(); history.push('/login'); }}
+        >
+          <i className='fas fa-sign-out-alt' />
+        </NavLink>
+      </NavItem>
     );
   }
 }
@@ -25,7 +29,7 @@ export class ErrorAlert extends Component {
 /* istanbul ignore next */
 function mapStateToProps(state) {
   return {
-    common: state.common,
+    app: state.app,
   };
 }
 
@@ -39,4 +43,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ErrorAlert);
+)(LogOutButton);

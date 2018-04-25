@@ -22,7 +22,7 @@ export function requestSearch(args = {}) {
       // doRequest is a placeholder Promise. You should replace it with your own logic.
       // See the real-word example at:  https://github.com/supnate/rekit/blob/master/src/features/home/redux/fetchRedditReactjsList.js
       // args.error here is only for test coverage purpose.
-      const doRequest = axios.post(`${window.app_config.api_url}/client/search`, args, {});
+      const doRequest = axios.post(`${window.app_config.api_url}/client/search`, args, { withCredentials: true });
       doRequest.then(
         (res) => {
           dispatch({
@@ -33,6 +33,7 @@ export function requestSearch(args = {}) {
         },
         // Use rejectHandler as the second argument so that render errors won't be caught.
         (err) => {
+          if (err.response.status === 401) { window.location.href = '/login'; }
           dispatch({
             type: CLIENTS_REQUEST_SEARCH_FAILURE,
             data: { error: err },

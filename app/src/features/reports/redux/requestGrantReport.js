@@ -22,7 +22,7 @@ export function requestGrantReport(args = {}) {
       // doRequest is a placeholder Promise. You should replace it with your own logic.
       // See the real-word example at:  https://github.com/supnate/rekit/blob/master/src/features/home/redux/fetchRedditReactjsList.js
       // args.error here is only for test coverage purpose.
-      const doRequest = axios.get(`${window.app_config.api_url}/grant/${args.grant_id}/report`);
+      const doRequest = axios.get(`${window.app_config.api_url}/grant/${args.grant_id}/report`, { withCredentials: true });
       doRequest.then(
         (res) => {
           dispatch({
@@ -33,6 +33,7 @@ export function requestGrantReport(args = {}) {
         },
         // Use rejectHandler as the second argument so that render errors won't be caught.
         (err) => {
+          if (err.response.status === 401) { window.location.href = '/login'; }
           dispatch({
             type: REPORTS_REQUEST_GRANT_REPORT_FAILURE,
             data: { error: err },

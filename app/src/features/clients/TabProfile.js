@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { FormGroup, Label, Input } from 'reactstrap';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import FormValidator from '../.././Features/Common/FormValidator';
+import FormValidator from '../.././features/common/FormValidator';
 import * as actions from './redux/actions';
 
 export class TabProfile extends Component {

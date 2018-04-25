@@ -1,17 +1,17 @@
-import axios from 'axios';
 import {
-  GRANTS_CREATE_GRANT_BEGIN,
-  GRANTS_CREATE_GRANT_SUCCESS,
-  GRANTS_CREATE_GRANT_FAILURE,
-  GRANTS_CREATE_GRANT_DISMISS_ERROR,
+  APP_LOGOUT_BEGIN,
+  APP_LOGOUT_SUCCESS,
+  APP_LOGOUT_FAILURE,
+  APP_LOGOUT_DISMISS_ERROR,
 } from './constants';
+import axios from 'axios';
 
 // Rekit uses redux-thunk for async actions by default: https://github.com/gaearon/redux-thunk
 // If you prefer redux-saga, you can use rekit-plugin-redux-saga: https://github.com/supnate/rekit-plugin-redux-saga
-export function createGrant(args = {}) {
+export function logout(args = {}) {
   return (dispatch) => { // optionally you can have getState as the second argument
     dispatch({
-      type: GRANTS_CREATE_GRANT_BEGIN,
+      type: APP_LOGOUT_BEGIN,
     });
 
     // Return a promise so that you could control UI flow without states in the store.
@@ -22,20 +22,19 @@ export function createGrant(args = {}) {
       // doRequest is a placeholder Promise. You should replace it with your own logic.
       // See the real-word example at:  https://github.com/supnate/rekit/blob/master/src/features/home/redux/fetchRedditReactjsList.js
       // args.error here is only for test coverage purpose.
-      const doRequest = axios.post(`${window.app_config.api_url}/grant`, args.grantInfo, { withCredentials: true });
+      const doRequest = axios.get(`${window.app_config.api_url}/logout`, { withCredentials: true });
       doRequest.then(
         (res) => {
           dispatch({
-            type: GRANTS_CREATE_GRANT_SUCCESS,
+            type: APP_LOGOUT_SUCCESS,
             data: res,
           });
           resolve(res);
         },
         // Use rejectHandler as the second argument so that render errors won't be caught.
         (err) => {
-          if (err.response.status === 401) { window.location.href = '/login'; }
           dispatch({
-            type: GRANTS_CREATE_GRANT_FAILURE,
+            type: APP_LOGOUT_FAILURE,
             data: { error: err },
           });
           reject(err);
@@ -49,43 +48,43 @@ export function createGrant(args = {}) {
 
 // Async action saves request error by default, this method is used to dismiss the error info.
 // If you don't want errors to be saved in Redux store, just ignore this method.
-export function dismissCreateGrantError() {
+export function dismissLogoutError() {
   return {
-    type: GRANTS_CREATE_GRANT_DISMISS_ERROR,
+    type: APP_LOGOUT_DISMISS_ERROR,
   };
 }
 
 export function reducer(state, action) {
   switch (action.type) {
-    case GRANTS_CREATE_GRANT_BEGIN:
+    case APP_LOGOUT_BEGIN:
       // Just after a request is sent
       return {
         ...state,
-        createGrantPending: true,
-        createGrantError: null,
+        logoutPending: true,
+        logoutError: null,
       };
 
-    case GRANTS_CREATE_GRANT_SUCCESS:
+    case APP_LOGOUT_SUCCESS:
       // The request is success
       return {
         ...state,
-        createGrantPending: false,
-        createGrantError: null,
+        logoutPending: false,
+        logoutError: null,
       };
 
-    case GRANTS_CREATE_GRANT_FAILURE:
+    case APP_LOGOUT_FAILURE:
       // The request is failed
       return {
         ...state,
-        createGrantPending: false,
-        createGrantError: action.data.error,
+        logoutPending: false,
+        logoutError: action.data.error,
       };
 
-    case GRANTS_CREATE_GRANT_DISMISS_ERROR:
+    case APP_LOGOUT_DISMISS_ERROR:
       // Dismiss the request failure error
       return {
         ...state,
-        createGrantError: null,
+        logoutError: null,
       };
 
     default:
