@@ -8,11 +8,25 @@
   }
   &__back-arrow {
     cursor: pointer;
+
+    @media print {
+      display: none;
+    }
   }
   &__icon-link {
     font-size: $h2-font-size;
     margin: 0 5px;
     cursor: pointer;
     color: $gray-800;
+
+    @media print {
+      display: none;
+    }
+  }
+
+  button {
+    @media print {
+      display: none;
+    }
   }
 }

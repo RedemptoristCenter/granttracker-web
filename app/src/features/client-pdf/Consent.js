@@ -27,6 +27,8 @@ export class Consent extends Component {
     this.setState({
       name: `${params.Fname} ${params.Lname}`
     });
+
+    window.print();
   }
 
   render() {

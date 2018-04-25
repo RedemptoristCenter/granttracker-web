@@ -205,8 +205,6 @@ export class TabIncome extends Component {
     });
     if (isNaN(exp_amount)) { exp_amount = 0; }
 
-    console.log('leeeee', household_income, exp_amount);
-
     return household_income - exp_amount;
   }
 

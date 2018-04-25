@@ -13,6 +13,14 @@
       border-color: transparent;
       height: 100%;
       overflow: auto;
+
+      @media print {
+        height: auto;
+      }
+    }
+
+    @media print {
+      height: auto;
     }
   }
 }

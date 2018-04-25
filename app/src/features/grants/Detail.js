@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Container } from '../../features/app';
-import { Button, FormGroup, Label, Input, Col } from 'reactstrap';
+import { Button, FormGroup, Label, Input, Col, Alert } from 'reactstrap';
 import MaskedInput from 'react-text-mask';
 import moment from 'moment/moment';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
@@ -22,15 +22,16 @@ export class Detail extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      hasError: false
-    }
-
     this.handleStartDateChange = this.handleStartDateChange.bind(this);
     this.handleEndDateChange = this.handleEndDateChange.bind(this);
     this.handleChangeEvent = this.handleChangeEvent.bind(this);
     this.toggleError = this.toggleError.bind(this);
   }
+
+  state = {
+    hasError: false,
+    updateSuccess: false
+  };
 
   componentDidMount() {
     const { grant_id } = this.props.match.params;
@@ -42,7 +43,6 @@ export class Detail extends Component {
   }
 
   toggleError() {
-    console.log("toggled error!")
     this.setState({
       hasError: true
     });
@@ -73,6 +73,9 @@ export class Detail extends Component {
     return ([
       <div key='GrantsForm' className='grants-detail__form-wrapper'>
         <Col className='grants-detail__max-height' xs='9'>
+          {
+            this.state.updateSuccess ? <Alert color='success'>Successfully updated client.</Alert> : ''
+          }
           <div className='row justify-content-between align-items-center m-0'>
             <h2>
               <span className='clients-detail__back-arrow' onClick={() => { history.push('/grants'); }}><i className='fas fa-arrow-left' /></span>
@@ -90,7 +93,7 @@ export class Detail extends Component {
               </FormValidator>  
             </FormGroup>
             <FormGroup className='col'>
-              <FormValidator errorCallback={this.toggleError} value={moment.unix(grantInfo.start_dt_tm).format("YYYY-MM-DD")}>
+              <FormValidator errorCallback={this.toggleError} value={moment.unix(grantInfo.start_dt_tm).format('YYYY-MM-DD')}>
                 <Label for='start_dt_tm'>Grant Start Date</Label>
                 <Input
                   type='date'
@@ -99,13 +102,13 @@ export class Detail extends Component {
                   id='start_dt_tm'
                   placeholder='Grant Start Date'
                   bsSize='sm'
-                  value={moment.unix(grantInfo.start_dt_tm).format("YYYY-MM-DD")}
+                  value={moment.unix(grantInfo.start_dt_tm).format('YYYY-MM-DD')}
                   onChange={this.handleStartDateChange}
                 />
               </FormValidator>
             </FormGroup>
             <FormGroup className='col'>
-              <FormValidator errorCallback={this.toggleError} value={moment.unix(grantInfo.end_dt_tm).format("YYYY-MM-DD")}>
+              <FormValidator errorCallback={this.toggleError} value={moment.unix(grantInfo.end_dt_tm).format('YYYY-MM-DD')}>
                 <Label for='end_dt_tm'>Grant End Date</Label>
                 <Input
                   type='date'
@@ -114,7 +117,7 @@ export class Detail extends Component {
                   id='end_dt_tm'
                   placeholder='Grant End Date'
                   bsSize='sm'
-                  value={moment.unix(grantInfo.end_dt_tm).format("YYYY-MM-DD")}
+                  value={moment.unix(grantInfo.end_dt_tm).format('YYYY-MM-DD')}
                   onChange={this.handleEndDateChange}
                 />
               </FormValidator>
@@ -151,7 +154,6 @@ export class Detail extends Component {
             </FormGroup>
           </div>
         </Col>
-        <GrantsLog key='grantsLog' grantInfo={grantInfo} />
       </div>
     ]);
   }
